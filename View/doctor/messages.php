@@ -1,3 +1,10 @@
+<?php
+session_start();
+if(!isset($_SESSION["doc"])) {
+    header("Location: ../login.php");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -56,7 +63,7 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
                                 <li class="">
-                                    <a class="dropdown-item border-radius-md" href="logout.php">
+                                    <a class="dropdown-item border-radius-md" href="../logout.php">
                                         <div class="d-flex">
                                             <div class="my-auto">
                                                 <i class="fas fa-sign-out-alt text-danger text-sm opacity-10 border-radius-sm me-3"></i>

@@ -1,12 +1,24 @@
+<?php
+session_start();
+if (isset($_SESSION["doc"]))
+    header("Location: doctor/dashboard.php");
+
+else if (isset($_SESSION["patient"]))
+    header("Location: patient/dashboard.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title>FreeWebsiteCode - Wavy login form</title>
+    <title>Saafwan Dental & Ortho Dontics</title>
     <link href="https://fonts.googleapis.com/css?family=Asap" rel="stylesheet">
     <link rel="stylesheet" href="../Assets/css/login.scss">
     <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 
 <body>
@@ -19,24 +31,28 @@
     <div class="form-structor">
         <div class="signup">
             <h2 class="form-title" id="signup">Login</h2>
-            <form action="doctor/dashboard.php" method="POST">
+            <form action="../Controller/loginController.php" method="POST">
                 <div class="form-holder">
                     <input type="text" class="input" name="phone" placeholder="Phone Number" />
                     <input type="password" class="input" name="pass" placeholder="Password" />
                 </div>
                 <button type="submit" class="submit-btn">Login</button>
             </form>
+            <?php
+            if (isset($_COOKIE["reg"]))
+                echo $_COOKIE["reg"];
+            ?>
         </div>
         <div class="login slide-up">
             <div class="center">
                 <h2 class="form-title" id="login">Registration</h2>
-                <form action="patient/dashboard.php" method="POST">
+                <form action="../Controller/patient/registrationController.php" method="POST" onsubmit="return validRegistration(this)">
                     <div class="form-holder">
-                        <input type="text" class="input" name="name" placeholder="Name" />
-                        <input type="email" class="input" name="email" placeholder="Email" />
-                        <input type="text" class="input" name="phone" placeholder="Phone Number(use for login)" />
-                        <input type="number" class="input" name="age" placeholder="Age" />
-                        <select name="gender" class="input">
+                        <input type="text" class="input" name="name" placeholder="Name" required />
+                        <input type="email" class="input" id="email" name="email" placeholder="Email" />
+                        <input type="text" class="input" id="phone" name="phone" placeholder="Phone Number(use for login)" required />
+                        <input type="number" class="input" id="age" name="age" placeholder="Age" required />
+                        <select name="gender" class="input" required>
                             <option value="" disabled selected>Gender</option>
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
@@ -45,6 +61,9 @@
                     </div>
                     <button type="submit" class="submit-btn">Sign up</button>
                 </form>
+                <span id='errorEmail' role='alert' style='color: red; font-weight: bold; font-size: 13px;'></span>
+                <span id='errorPhone' role='alert' style='color: red; font-weight: bold; font-size: 13px;'></span>
+                <span id='errorAge' role='alert' style='color: red; font-weight: bold; font-size: 13px;'></span>
             </div>
         </div>
     </div>
@@ -81,6 +100,7 @@
             });
         });
     </script>
+    <script src="../Assets/js/registrationValidation.js"></script>
 </body>
 
 </html>

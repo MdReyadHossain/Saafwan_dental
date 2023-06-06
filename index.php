@@ -39,7 +39,7 @@
     <div class="container-fluid sticky-top bg-white shadow-sm">
         <div class="container">
             <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0">
-                <a href="index.html" class="navbar-brand">
+                <a href="" class="navbar-brand">
                     <img src="./Assets/img/saafwanLogo.png" alt="saafwan" width="250">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -67,7 +67,7 @@
                     <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5" style="border-color: rgba(256, 256, 256, .3) !important;">Welcome To Saafwan Denatal</h5>
                     <h1 class="display-1 text-white mb-md-4">Best Dentalcare Solution In Your City</h1>
                     <div class="pt-2">
-                        <a href="./View/login.php" class="btn btn-light rounded-pill py-md-3 px-md-5 mx-2">Appointment</a>
+                        <a href="./View/patient/dashboard.php" class="btn btn-light rounded-pill py-md-3 px-md-5 mx-2">Appointment</a>
                     </div>
                 </div>
             </div>
@@ -256,29 +256,34 @@
         <div class="container py-5">
             <div class="row gx-5">
                 <div class="col-lg-6 mb-5 mb-lg-0" id="location-map">
-                    <div class="mb-4">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d271.3082962890047!2d90.43099166947944!3d23.808826049966523!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c77c70a7d73f%3A0x13b6c94f7409f500!2sSaafwan%20Dental!5e0!3m2!1sen!2sbd!4v1685181601490!5m2!1sen!2sbd" width="600" height="500" style="border: 5px solid rgb(104, 245, 255); border-radius: 10px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <div class="">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d271.3082962890047!2d90.43099166947944!3d23.808826049966523!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c77c70a7d73f%3A0x13b6c94f7409f500!2sSaafwan%20Dental!5e0!3m2!1sen!2sbd!4v1685181601490!5m2!1sen!2sbd" width="100%" height="500" style="border: 5px solid rgb(104, 245, 255); border-radius: 10px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <div class="bg-white text-center rounded p-5">
+                    <div class="bg-white text-center rounded p-5" id="get-in-touch">
                         <h1 class="mb-4">Get in Touch</h1>
-                        <form>
+                        <form action="./Controller/anonymous/anonymousController.php" method="POST">
                             <div class="row g-3">
                                 <div class="col-12">
-                                    <input type="text" class="form-control bg-light border-0" placeholder="Your Name*" style="height: 55px;">
+                                    <input type="text" class="form-control bg-light border-0" name="name" placeholder="Your Name*" style="height: 55px;" required>
                                 </div>
                                 <div class="col-12 col-sm-6">
-                                    <input type="email" class="form-control bg-light border-0" placeholder="Your Email*" style="height: 55px;">
+                                    <input type="email" class="form-control bg-light border-0" name="email" placeholder="Your Email*" style="height: 55px;" required>
                                 </div>
                                 <div class="col-12 col-sm-6">
-                                    <input type="text" class="form-control bg-light border-0" placeholder="Your Phone Number*" style="height: 55px;">
+                                    <input type="text" class="form-control bg-light border-0" name="phone" placeholder="Your Phone Number*" style="height: 55px;" required>
                                 </div>
                                 <div class="col-12">
                                     <div class="date" id="date" data-target-input="nearest">
-                                        <textarea class="form-control bg-light border-0" name="" id="" cols="30" rows="4" placeholder="Send a Message*"></textarea>
+                                        <textarea class="form-control bg-light border-0" name="message" id="" cols="30" rows="4" placeholder="Send a Message*" required></textarea>
                                     </div>
                                 </div>
+                                <?php
+                                if (isset($_COOKIE["error"])) {
+                                    echo $_COOKIE["error"];
+                                }
+                                ?>
                                 <div class="col-12">
                                     <button class="btn btn-primary w-100 py-3" type="submit">Send</button>
                                 </div>
@@ -443,9 +448,14 @@
                 <div class="col-lg-3 col-md-6">
                     <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4">Get In Touch</h4>
                     <p class="mb-4">We are a specialized dental clinic conveniently located in Dhaka, Bangladesh. Our team of specialist</p>
-                    <p class="mb-2"><a href="https://goo.gl/maps/Dpss3RTYzKTtfuLXA?coh=178571&entry=tt" style="color: aliceblue;"><i class="fa fa-map-marker-alt text-primary me-3"></i>529, solmaid,dutch-bangla gate, Dhaka, Bangladesh</a></p>
-                    <p class="mb-2"><a href="mailto:fidaarham@gmail.com" style="color: aliceblue;"><i class="fa fa-envelope text-primary me-3"></i>fidaarham@gmail.com</a></p>
-                    <p class="mb-0"><a href="tel:+8801713-115050" style="color: aliceblue;"><i class="fa fa-phone-alt text-primary me-3"></i>+8801713-115050</a></p>
+                    <p class="mb-2">
+                        <a href="https://goo.gl/maps/UNbvXS7gSgkVrHSc9?coh=178571&entry=tt" style="color: aliceblue;"><i class="fa fa-map-marker-alt text-primary me-3"></i><?php echo $doc["chamber1"] ?></a>
+                    </p>
+                    <p class="mb-2">
+                        <a href="https://goo.gl/maps/F2NVNdZatgLU3zuz6?coh=178571&entry=tt" style="color: aliceblue;"><i class="fa fa-map-marker-alt text-primary me-3"></i><?php echo $doc["chamber2"] ?></a>
+                    </p>
+                    <p class="mb-2"><a href="mailto:<?php echo $doc["email"] ?>" style="color: aliceblue;"><i class="fa fa-envelope text-primary me-3"></i><?php echo $doc["email"] ?></a></p>
+                    <p class="mb-0"><a href="tel:<?php echo $doc["phone"] ?>" style="color: aliceblue;"><i class="fa fa-phone-alt text-primary me-3"></i><?php echo $doc["phone"] ?></a></p>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4">Quick Links</h4>
@@ -468,12 +478,16 @@
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4">News letter</h4>
-                    <form action="">
+                    <form action="./Controller/anonymous/anonymousEmailController.php" method="POST" id="anonymous-email">
                         <div class="input-group">
-                            <input type="text" class="form-control p-3 border-0" placeholder="Your Email Address">
-                            <button class="btn btn-primary px-4"><i class="fas fa-paper-plane"></i></button>
+                            <input type="email" class="form-control p-3 border-0" name="email" placeholder="Your Email Address" required>
+                            <button class="btn btn-primary px-4" type="submit"><i class="fas fa-paper-plane"></i></button>
                         </div>
                     </form>
+                    <?php
+                    if (isset($_COOKIE["msg"]))
+                        echo $_COOKIE["msg"];
+                    ?>
                     <h6 class="text-primary text-uppercase mt-4 mb-3">Follow Us</h6>
                     <div class="d-flex">
                         <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-2" href="https://www.facebook.com/SaafwanDentalClinic"><i class="fab fa-facebook-f"></i></a>
@@ -495,11 +509,11 @@
             </div>
         </div>
     </div>
-    <!-- Footer End -->
 
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    <!-- Footer End -->
 
 
     <!-- JavaScript Libraries -->

@@ -1,10 +1,16 @@
+<?php
+session_start();
+if (!isset($_SESSION["patient"])) {
+    header("Location: ../login.php");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
     <title>
         Patient Panel
@@ -59,7 +65,7 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
                                 <li class="">
-                                    <a class="dropdown-item border-radius-md" href="logout.php">
+                                    <a class="dropdown-item border-radius-md" href="../logout.php">
                                         <div class="d-flex">
                                             <div class="my-auto">
                                                 <i class="fas fa-sign-out-alt text-danger text-sm opacity-10 border-radius-sm me-3"></i>

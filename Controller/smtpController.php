@@ -23,8 +23,8 @@ function smtp_mailer($to, $subject, $msg)
         'allow_self_signed' => false
     ));
     if (!$mail->Send()) {
-        echo $mail->ErrorInfo;
+        return;
     } else {
-        return 'Sent';
+        return;
     }
 }
