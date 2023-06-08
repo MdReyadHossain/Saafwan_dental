@@ -54,3 +54,29 @@ function deleteAppointment($id)
         $db->close();
     }
 }
+
+function deletePatientMessage($id)
+{
+    $db = connect();
+    $sql = "UPDATE messages SET status = false WHERE id = $id";
+    try {
+        $db->query($sql);
+    } catch (Exception $error) {
+        echo "Error " . $sql . "<br>" . $db->error;
+    } finally {
+        $db->close();
+    }
+}
+
+function deleteAnonymousMessage($id)
+{
+    $db = connect();
+    $sql = "UPDATE anonymous SET status = false WHERE id = $id";
+    try {
+        $db->query($sql);
+    } catch (Exception $error) {
+        echo "Error " . $sql . "<br>" . $db->error;
+    } finally {
+        $db->close();
+    }
+}

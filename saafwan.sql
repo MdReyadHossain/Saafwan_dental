@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 08, 2023 at 04:05 PM
+-- Generation Time: Jun 08, 2023 at 11:35 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.2
 
@@ -49,7 +49,9 @@ INSERT INTO `anonymous` (`id`, `name`, `email`, `phone`, `gender`, `age`, `messa
 (2, NULL, 'fidaarhamddd@gmail.com', NULL, NULL, NULL, NULL, '2023-06-08', 0),
 (3, 'Reyad Hossain', 'reyadhosen@gmail.com', '01956394373', NULL, NULL, 'I have some problem with my teeth', '2023-06-08', 1),
 (4, 'Munira Zebin', 'munirazebin229@gmail.com', '01745482666', NULL, NULL, 'Thank you Doctor', '2023-06-08', 1),
-(5, NULL, 'abbas@gmail.com', NULL, NULL, NULL, NULL, '2023-06-08', 0);
+(5, NULL, 'abbas@gmail.com', NULL, NULL, NULL, NULL, '2023-06-08', 0),
+(6, 'Ruidu', 'reyadhosen@gmail.com', '01956394373', NULL, NULL, 'hola', '2023-06-08', 0),
+(7, 'Munira Zebin', 'munirazebin229@gmail.com', '01745482666', NULL, NULL, 'nooooo', '2023-06-08', 0);
 
 -- --------------------------------------------------------
 
@@ -112,15 +114,16 @@ CREATE TABLE `messages` (
   `id` int(11) NOT NULL,
   `message` varchar(250) NOT NULL,
   `created_at` date NOT NULL,
-  `patient_id` int(11) DEFAULT NULL
+  `patient_id` int(11) DEFAULT NULL,
+  `status` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `messages`
 --
 
-INSERT INTO `messages` (`id`, `message`, `created_at`, `patient_id`) VALUES
-(1, 'Hello Doc, I need your help', '2023-06-08', 20);
+INSERT INTO `messages` (`id`, `message`, `created_at`, `patient_id`, `status`) VALUES
+(1, 'Hello Doc, I need your help.Hello Doc, I need your help.Hello Doc, I need your help.Hello Doc, I need your help.Hello Doc, I need your help.', '2023-06-08', 20, 1);
 
 -- --------------------------------------------------------
 
@@ -178,7 +181,9 @@ INSERT INTO `users` (`id`, `name`, `phone`, `email`, `password`, `age`, `gender`
 (33, 'Munira Zebin', '01745482666', 'munirazebin229@gmail.com', '713392', 20, 'Female', '2023-06-06', NULL, 22),
 (34, 'Reyad Hossain', '01956394373', 'reyadhosen@gmail.com', NULL, NULL, NULL, '2023-06-08', NULL, NULL),
 (35, 'Munira Zebin', '01745482666', 'munirazebin229@gmail.com', NULL, NULL, NULL, '2023-06-08', NULL, NULL),
-(36, NULL, NULL, 'abbas@gmail.com', NULL, NULL, NULL, '2023-06-08', NULL, NULL);
+(36, NULL, NULL, 'abbas@gmail.com', NULL, NULL, NULL, '2023-06-08', NULL, NULL),
+(37, 'Ruidu', '01956394373', 'reyadhosen@gmail.com', NULL, NULL, NULL, '2023-06-08', NULL, NULL),
+(38, 'Munira Zebin', '01745482666', 'munirazebin229@gmail.com', NULL, NULL, NULL, '2023-06-08', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -231,7 +236,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `anonymous`
 --
 ALTER TABLE `anonymous`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `appointments`
@@ -261,7 +266,7 @@ ALTER TABLE `patients`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- Constraints for dumped tables

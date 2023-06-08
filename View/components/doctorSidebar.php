@@ -9,7 +9,7 @@ $db = connect();
 $doc = $db->query("SELECT * FROM doctors WHERE id = 1")->fetch_assoc();
 
 $patients = $db->query("SELECT * FROM patients");
-$patientsMsg = $db->query("SELECT patients.*, messages.* FROM messages INNER JOIN patients ON messages.patient_id = patients.id");
+$patientsMsg = $db->query("SELECT patients.*, messages.* FROM messages INNER JOIN patients ON messages.patient_id = patients.id WHERE messages.status = true");
 $anonymousMsg = $db->query("SELECT * FROM anonymous WHERE status = true");
 
 $malePatients = $db->query("SELECT * FROM patients WHERE gender = 'Male'");

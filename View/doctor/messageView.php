@@ -1,13 +1,3 @@
-<?php
-function message($msg)
-{
-    if (strlen($msg) > 25) {
-        $msg = substr($msg, 0, 24) . "...";
-    }
-    return $msg;
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,8 +23,20 @@ function message($msg)
 <body class="g-sidenav-show   bg-gray-100">
     <div class="min-height-300 bg-primary position-absolute w-100"></div>
     <!-- Sidebar -->
-    <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 fixed-start" id="sidenav-main">
-        <?php include("../components/doctorSidebar.php"); ?>
+    <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 fixed-start " id="sidenav-main">
+        <?php
+        include("../components/doctorSidebar.php");
+
+        if (isset($_GET['patient-id'])) {
+            $id = $_GET['patient-id'];
+            $getUser = "patient-id";
+            $user = $db->query("SELECT patients.*, messages.* FROM messages INNER JOIN patients ON messages.patient_id = patients.id WHERE messages.id = " . $id . "")->fetch_assoc();
+        } else if (isset($_GET['anonymous-id'])) {
+            $id = $_GET['anonymous-id'];
+            $getUser = "anonymous-id";
+            $user = $db->query("SELECT * FROM anonymous WHERE status = true AND id = " . $id . "")->fetch_assoc();
+        }
+        ?>
     </aside>
     <main class="main-content position-relative border-radius-lg ">
         <!-- Navbar -->
@@ -121,95 +123,36 @@ function message($msg)
                 </div>
             </div>
             <div class="row my-4">
-                <div class="col-lg-12 mb-4">
+                <div class="col-lg-12 col-md-6 mb-4">
                     <div class="card mb-4 h-100">
-                        <div class="card-header pb-0">
-                            <h6>Patient Messages</h6>
+                        <div class="d-flex align-items-center">
+                            <h6 class="m-4">Message</h6>
+                            <a href="messages.php" class="btn btn-primary btn-sm ms-auto m-4">Patient Messages</a>
                         </div>
-                        <div class="card-body px-0 pt-0 pb-2" style="height: 50vh; overflow-y: scroll;">
-                            <div class="table-responsive p-0">
-                                <table class="table align-items-center mb-0">
-                                    <thead>
-                                        <tr>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Patient Name</th>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Message</th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Phone No</th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Recieved</th>
-                                            <th class="text-secondary opacity-7"></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <a href="../../Controller/doctor/messageDeleteController.php"></a>
-                                        <?php
-                                        if ($patientsMsg->num_rows > 0) {
-                                            while ($data = $patientsMsg->fetch_assoc()) {
-                                                echo "
-                                                <tr>
-                                                    <td>
-                                                        <div class='d-flex px-2 py-1'>
-                                                            <div class='d-flex flex-column justify-content-center'>
-                                                                <h6 class='mb-0 text-sm'>" . $data['name'] . "</h6>
-                                                                <p class='text-xs text-secondary mb-0'>" . $data['email'] . "</p>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td class=''>
-                                                        <p class='text-xs font-weight-bold mb-0'>" . message($data['message']) . "</p>
-                                                    </td>
-                                                    <td class='align-middle text-center text-sm'>
-                                                        <p class='text-xs font-weight-bold mb-0'>" . $data['phone'] . "</p>
-                                                    </td>
-                                                    <td class='align-middle text-center'>
-                                                        <span class='text-secondary text-xs font-weight-bold'><p class='text-xs font-weight-bold mb-0'>" . $data['created_at'] . "</p></span>
-                                                    </td>
-                                                    <td style='text-align: center;'>
-                                                        <a href='messageView.php?patient-id=" . $data['id'] . "' class='btn btn-primary font-weight-bold text-xs'>
-                                                            View
-                                                        </a>
-                                                        <a href='../../Controller/doctor/messageDeleteController.php?patient-id=" . $data['id'] . "' class='btn btn-danger font-weight-bold text-xs'>
-                                                            <i class='fas fa-trash-alt mx-1'></i>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                ";
-                                            }
-                                        }
-                                        if ($anonymousMsg->num_rows > 0) {
-                                            while ($data = $anonymousMsg->fetch_assoc()) {
-                                                echo "
-                                                <tr>
-                                                    <td>
-                                                        <div class='d-flex px-2 py-1'>
-                                                            <div class='d-flex flex-column justify-content-center'>
-                                                                <h6 class='mb-0 text-sm'>" . $data['name'] . "</h6>
-                                                                <p class='text-xs text-secondary mb-0'>" . $data['email'] . "</p>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td class=''>
-                                                        <p class='text-xs font-weight-bold mb-0'>" . message($data['message']) . "</p>
-                                                    </td>
-                                                    <td class='align-middle text-center text-sm'>
-                                                        <p class='text-xs font-weight-bold mb-0'>" . $data['phone'] . "</p>
-                                                    </td>
-                                                    <td class='align-middle text-center'>
-                                                        <span class='text-secondary text-xs font-weight-bold'><p class='text-xs font-weight-bold mb-0'>" . $data['created_at'] . "</p></span>
-                                                    </td>
-                                                    <td style='text-align: center;'>
-                                                        <a href='messageView.php?anonymous-id=" . $data['id'] . "' class='btn btn-primary font-weight-bold text-xs'>
-                                                            View
-                                                        </a>
-                                                        <a href='../../Controller/doctor/messageDeleteController.php?anonymous-id=" . $data['id'] . "' class='btn btn-danger font-weight-bold text-xs'>
-                                                            <i class='fas fa-trash-alt mx-1'></i>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                ";
-                                            }
-                                        }
-                                        ?>
-                                    </tbody>
-                                </table>
+                        <hr style=" border: 0; height: 0; border-top: 1px solid rgba(0, 0, 0, 0.4); border-bottom: 1px solid rgba(255, 255, 255, 0.3);" />
+                        <div class="card-body px-4 pt-0 pb-2" style="height: 50vh; overflow-y: scroll;">
+                            <div class="row">
+                                <div class="col-8">
+                                    <div class="numbers">
+                                        <h5 class="font-weight-bolder">
+                                            <?php echo $user['name'] ?>
+                                        </h5>
+                                        <p class="text-sm mb-0 font-weight-bold"><?php echo $user['email'] ?></p>
+                                        <p class="text-sm mb-0 text-uppercase"><?php echo $user['phone'] ?></p>
+                                        <br>
+                                        <p class="mb-0">
+                                            <span class="text-secondary text-sm font-weight-bolder"><?php echo $user['message'] ?></span>
+                                        </p>
+                                        <a href="../../Controller/doctor/messageDeleteController.php?<?php echo $getUser ?>=<?php echo $user['id'] ?>" class='btn btn-danger font-weight-bold text-xs mt-3'>
+                                            Delete
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-4 text-end">
+                                    <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
+                                        <i class="fas fa-envelope-open-text text-2xl opacity-10" aria-hidden="true"></i>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
