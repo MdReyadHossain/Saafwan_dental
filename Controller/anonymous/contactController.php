@@ -42,17 +42,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     }
 
     if ($isValid) {
-        anonymousInsert($name, $email, $phone, $message);
-        setcookie("error", "<span class='alert alert-success' role='alert'><i class='fas fa-check'></i> Massege Sent. Doctor will contact you with your given Email or Phone number soon.</span>", time() + 1, "/");
-
-        $msg = $message . "<br>" .
-            "<br>" .
-            "Email: " . $email . "<br>" .
-            "Contact Number: " . $phone . "<br>" .
-            "<br>" .
-            "<a href='https://saafwan.com/'>Saafwan Dental and Ortho Dontics</a>";
+        $msg = $message . "<br><br>Email: " . $email . "<br>Contact Number: " . $phone . "<br><br><a href='https://saafwan.com/'>Saafwan Dental and Ortho Dontics</a>";
         smtp_mailer($doc["email"], $name . " sent new message from Saafwan.com", $msg);
 
+        anonymousInsert($name, $email, $phone, $message);
+        setcookie("error", "<span class='alert alert-success' role='alert'><i class='fas fa-check'></i> Massege Sent. Doctor will contact you with your given Email or Phone number soon.</span>", time() + 1, "/");
         header("location: ../../View/contact.php#send-msg");
     } else {
         setcookie("error", "<span class='alert alert-danger' role='alert'><i class='fas fa-exclamation-circle'></i> Input Field Should not be empty!</span>", time() + 1, "/");

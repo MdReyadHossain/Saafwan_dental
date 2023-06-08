@@ -1,3 +1,22 @@
+<?php
+require "../../Model/dbConnect.php";
+session_start();
+if (!isset($_SESSION["doc"])) {
+    header("Location: ../login.php");
+}
+
+$db = connect();
+$doc = $db->query("SELECT * FROM doctors WHERE id = 1")->fetch_assoc();
+
+$patients = $db->query("SELECT * FROM patients");
+$patientsMsg = $db->query("SELECT patients.*, messages.* FROM messages INNER JOIN patients ON messages.patient_id = patients.id");
+$anonymousMsg = $db->query("SELECT * FROM anonymous WHERE status = true");
+
+$malePatients = $db->query("SELECT * FROM patients WHERE gender = 'Male'");
+$femalePatients = $db->query("SELECT * FROM patients WHERE gender = 'Female'");
+$appointmentReq = $db->query("SELECT patients.*, appointments.* FROM appointments INNER JOIN patients ON appointments.patient_id = patients.id WHERE appointments.user = 'patient' AND appointments.status = 'pending'");
+$appointmentLog = $db->query("SELECT patients.*, appointments.* FROM appointments INNER JOIN patients ON appointments.patient_id = patients.id WHERE appointments.user = 'doctor' ORDER BY appointments.status DESC");
+?>
 <div class="sidenav-header">
     <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
     <a class="navbar-brand m-0" href="../../">

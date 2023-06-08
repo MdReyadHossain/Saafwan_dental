@@ -1,17 +1,29 @@
 <?php
-session_start();
-if (!isset($_SESSION["doc"])) {
-    header("Location: ../login.php");
+function dateNull()
+{
+    if (isset($_COOKIE['date-null']))
+        return $_COOKIE['date-null'];
+}
+
+function chamber1($chamber)
+{
+    if ($chamber == '1') {
+        return "selected";
+    }
+}
+function chamber2($chamber)
+{
+    if ($chamber == '2') {
+        return "selected";
+    }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
     <title>
         Doctor Panel
@@ -103,7 +115,7 @@ if (!isset($_SESSION["doc"])) {
                                 <div class="numbers">
                                     <p class="text-sm mb-0 text-uppercase font-weight-bold">Total Patients</p>
                                     <h5 class="font-weight-bolder">
-                                        56
+                                        <?php echo $patients->num_rows ?>
                                     </h5>
                                     <p class="mb-0">
                                         <span class="text-success text-sm font-weight-bolder">Saafwan Dental & Ortho Dontics</span>
@@ -122,190 +134,74 @@ if (!isset($_SESSION["doc"])) {
             <div class="row my-4">
                 <div class="col-lg-12 col-md-6 mb-4">
                     <div class="card mb-4 h-100">
-                        <div class="card-header pb-0">
-                            <h6>Appointment Requests</h6>
-                        </div>
+                        <form action="appointmentHistory.php">
+                            <div class="d-flex align-items-center">
+                                <h6 class="m-4">Appointment Requests</h6>
+                                <button class="btn btn-primary btn-sm ms-auto m-4">Appointment Log</button>
+                            </div>
+                        </form>
                         <div class="card-body px-0 pt-0 pb-2" style="height: 50vh; overflow-y: scroll;">
                             <div class="table-responsive p-0">
                                 <table class="table align-items-center mb-0">
                                     <thead>
                                         <tr>
                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Patient Name</th>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Email</th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">phone No</th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Requested at</th>
-                                            <th class="text-secondary opacity-7"></th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Phone Number</th>
+                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Age/Gender</th>
+                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Chamber</th>
+                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Requested for</th>
+                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" colspan="2">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex px-2 py-1">
-                                                    <div>
-                                                        <img src="../assets/img/team-2.jpg" class="avatar avatar-sm me-3" alt="user1">
-                                                    </div>
-                                                    <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">John Michael</h6>
-                                                        <p class="text-xs text-secondary mb-0">john@creative-tim.com</p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-bold mb-0">Manager</p>
-                                                <p class="text-xs text-secondary mb-0">Organization</p>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <span class="badge badge-sm bg-gradient-success">Online</span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-                                            </td>
-                                            <td class="align-middle">
-                                                <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                                    Edit
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex px-2 py-1">
-                                                    <div>
-                                                        <img src="../assets/img/team-3.jpg" class="avatar avatar-sm me-3" alt="user2">
-                                                    </div>
-                                                    <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">Alexa Liras</h6>
-                                                        <p class="text-xs text-secondary mb-0">alexa@creative-tim.com</p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-bold mb-0">Programator</p>
-                                                <p class="text-xs text-secondary mb-0">Developer</p>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <span class="badge badge-sm bg-gradient-secondary">Offline</span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">11/01/19</span>
-                                            </td>
-                                            <td class="align-middle">
-                                                <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                                    Edit
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex px-2 py-1">
-                                                    <div>
-                                                        <img src="../assets/img/team-4.jpg" class="avatar avatar-sm me-3" alt="user3">
-                                                    </div>
-                                                    <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">Laurent Perrier</h6>
-                                                        <p class="text-xs text-secondary mb-0">laurent@creative-tim.com</p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-bold mb-0">Executive</p>
-                                                <p class="text-xs text-secondary mb-0">Projects</p>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <span class="badge badge-sm bg-gradient-success">Online</span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">19/09/17</span>
-                                            </td>
-                                            <td class="align-middle">
-                                                <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                                    Edit
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex px-2 py-1">
-                                                    <div>
-                                                        <img src="../assets/img/team-3.jpg" class="avatar avatar-sm me-3" alt="user4">
-                                                    </div>
-                                                    <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">Michael Levi</h6>
-                                                        <p class="text-xs text-secondary mb-0">michael@creative-tim.com</p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-bold mb-0">Programator</p>
-                                                <p class="text-xs text-secondary mb-0">Developer</p>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <span class="badge badge-sm bg-gradient-success">Online</span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">24/12/08</span>
-                                            </td>
-                                            <td class="align-middle">
-                                                <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                                    Edit
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex px-2 py-1">
-                                                    <div>
-                                                        <img src="../assets/img/team-2.jpg" class="avatar avatar-sm me-3" alt="user5">
-                                                    </div>
-                                                    <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">Richard Gran</h6>
-                                                        <p class="text-xs text-secondary mb-0">richard@creative-tim.com</p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-bold mb-0">Manager</p>
-                                                <p class="text-xs text-secondary mb-0">Executive</p>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <span class="badge badge-sm bg-gradient-secondary">Offline</span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">04/10/21</span>
-                                            </td>
-                                            <td class="align-middle">
-                                                <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                                    Edit
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex px-2 py-1">
-                                                    <div>
-                                                        <img src="../assets/img/team-4.jpg" class="avatar avatar-sm me-3" alt="user6">
-                                                    </div>
-                                                    <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">Miriam Eric</h6>
-                                                        <p class="text-xs text-secondary mb-0">miriam@creative-tim.com</p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-bold mb-0">Programtor</p>
-                                                <p class="text-xs text-secondary mb-0">Developer</p>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <span class="badge badge-sm bg-gradient-secondary">Offline</span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">14/09/20</span>
-                                            </td>
-                                            <td class="align-middle">
-                                                <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                                    Edit
-                                                </a>
-                                            </td>
-                                        </tr>
+                                        <?php
+                                        if ($appointmentReq->num_rows > 0) {
+                                            while ($data = $appointmentReq->fetch_assoc()) {
+                                                echo "
+                                                <tr>
+                                                    <td>
+                                                        <div class='d-flex px-2 py-1'>
+                                                            <div class='d-flex flex-column justify-content-center'>
+                                                                <h6 class='mb-0 text-sm'>" . $data['name'] . "</h6>
+                                                                <p class='text-xs text-secondary mb-0'>" . $data['email'] . "</p>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <p class='text-xs font-weight-bold mb-0'>" . $data['phone'] . "</p>
+                                                    </td>
+                                                    <td class='align-middle text-center text-sm'>
+                                                        <p class='text-xs font-weight-bold mb-0'>" . $data['age'] . "</p>
+                                                        <p class='text-xs text-secondary mb-0'>" . $data['gender'] . "</p>
+                                                    </td>
+                                                    <form action='../../Controller/doctor/appointmentReqController.php' method='POST'>
+                                                        <input type='number' name='id' value='" . $data['id'] . "' hidden>
+                                                        <td class='align-middle text-center text-sm'>
+                                                            <select name='chamber' class='form-control'>
+                                                                <option value='1' " . chamber1($data['chamber']) . ">" . $doc['chamber1'] . "</option>
+                                                                <option value='2' " . chamber2($data['chamber']) . ">" . $doc['chamber2'] . "</option>
+                                                            </select>
+                                                        </td>
+                                                        <td class='d-flex flex-column align-items-center'>
+                                                            <input type='date' class='form-control font-weight-bold' name='appointment-at' value='" . $data['appointment_at'] . "'>
+                                                            <p class='text-xs text-danger'>" . dateNull() . "</p>
+                                                        </td>
+                                                        <td style='text-align: right;'>
+                                                            <button type='submit' class='font-weight-bold text-xs btn btn-primary' data-toggle='tooltip' data-original-title='Edit user'>
+                                                                Set
+                                                            </button>
+                                                        </td>
+                                                    </form>
+                                                    <td style='text-align: left;'>
+                                                        <a class='font-weight-bold text-xs btn btn-danger' href='../../Controller/doctor/appointmentCancelController.php?appointment=" . $data['id'] . "'>
+                                                            Cancel
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                ";
+                                            }
+                                        }
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -315,44 +211,50 @@ if (!isset($_SESSION["doc"])) {
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header pb-0">
-                            <form action="appointmentHistory.php">
-                                <div class="d-flex align-items-center">
-                                    <p class="mb-0"><b>Set Appointment</b></p>
-                                    <button class="btn btn-primary btn-sm ms-auto">Appointment History</button>
-                                </div>
-                            </form>
+                            <div class="d-flex align-items-center">
+                                <p class="mb-0"><b>Set Appointment</b></p>
+                            </div>
+                            <?php
+                            if (isset($_COOKIE["app"]))
+                                echo $_COOKIE["app"];
+                            ?>
                         </div>
-                        <form action="" method="POST">
-                            <div class="card-body">
+                        <form action="../../Controller/doctor/appointmentSetController.php" method="POST">
+                            <div class="card-body" id="app">
                                 <p class="text-uppercase text-sm">Appointment Information</p>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="example-text-input" class="form-control-label">Appointment Date</label>
-                                            <input class="form-control" type="date" name="app-date">
+                                            <input class="form-control" type="date" name="appointment-date" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="example-text-input" class="form-control-label">Chamber</label>
-                                            <select class="form-control" name="chamber" id="">
+                                            <select class="form-control" name="chamber" id="" required>
                                                 <option value="" disabled selected>-- Select Chamber --</option>
-                                                <option value="Kuril Bishwa Road, Dhaka, Bangladesh">Kuril Bishwa Road, Dhaka, Bangladesh</option>
-                                                <option value="529, Solmaid, Dhaka, Bangladesh">529, Solmaid, Dhaka, Bangladesh</option>
+                                                <option value="1"><?php echo $doc["chamber1"] ?></option>
+                                                <option value="2"><?php echo $doc["chamber2"] ?></option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="example-text-input" class="form-control-label">Patient</label>
-                                            <select class="form-control" name="patient" id="">
+                                            <select class="form-control" name="patient-id" id="" required>
                                                 <option value="" disabled selected>-- Select Patient --</option>
-                                                <option value="Rahim - rahim@gamil.com">Rahim - rahim@gamil.com</option>
-                                                <option value="Karim - karim@gmail.com">Karim - karim@gmail.com</option>
+                                                <?php
+                                                if ($patients->num_rows > 0) {
+                                                    while ($data = $patients->fetch_assoc()) {
+                                                        echo "<option value='" . $data["id"] . "'>" . $data["name"] . " - " . $data["phone"] . "</option>";
+                                                    }
+                                                }
+                                                ?>
                                             </select>
                                         </div>
                                     </div>
-                                    <button class="btn btn-primary btn-lg ms-auto">Submit</button>
+                                    <button class="btn btn-primary btn-lg ms-auto" type="submit">Submit</button>
                                 </div>
                             </div>
                         </form>
