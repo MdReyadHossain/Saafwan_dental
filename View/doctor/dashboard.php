@@ -1,3 +1,21 @@
+<?php
+function status($stat)
+{
+    if ($stat == true)
+        return "success";
+    else if ($stat == false)
+        return "secondary";
+}
+
+function statusInner($stat)
+{
+    if ($stat == true)
+        return "Active";
+    else if ($stat == false)
+        return "Disable";
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -95,7 +113,7 @@
                                 <div class="numbers">
                                     <p class="text-sm mb-0 text-uppercase font-weight-bold">Total Patients</p>
                                     <h5 class="font-weight-bolder">
-                                        <?php echo $patients->num_rows ?>
+                                        <?php echo $allPatients->num_rows ?>
                                     </h5>
                                     <p class="mb-0">
                                         <span class="text-success text-sm font-weight-bolder">Saafwan Dental & Ortho Dontics</span>
@@ -139,38 +157,33 @@
                                     <thead>
                                         <tr>
                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Age/Gender</th>
+                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Status</th>
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Phone Number</th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Registered</th>
                                             <th class="text-secondary opacity-7"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
-                                        if ($patients->num_rows > 0) {
-                                            while ($data = $patients->fetch_assoc()) {
+                                        if ($allPatients->num_rows > 0) {
+                                            while ($data = $allPatients->fetch_assoc()) {
                                                 echo "
                                                 <tr>
                                                     <td>
                                                         <div class='d-flex px-2 py-1'>
                                                             <div class='d-flex flex-column justify-content-center'>
                                                                 <h6 class='mb-0 text-sm'>" . $data['name'] . "</h6>
-                                                                <p class='text-xs text-secondary mb-0'>" . $data['email'] . "</p>
+                                                                <a href='mailto:" . $data['email'] . "' class='text-xs text-secondary mb-0'>" . $data['email'] . "</a>
                                                             </div>
                                                         </div>
                                                     </td>
-                                                    <td>
-                                                        <p class='text-xs font-weight-bold mb-0'>" . $data['age'] . "</p>
-                                                        <p class='text-xs text-secondary mb-0'>" . $data['gender'] . "</p>
+                                                    <td class='align-middle text-center text-sm'>
+                                                        <span class='text-uppercase badge badge-sm bg-gradient-" . status($data['status']) . "'>" . statusInner($data['status']) . "</span>
                                                     </td>
                                                     <td class='align-middle text-center text-sm'>
-                                                        <span class='text-secondary text-xs font-weight-bold'>" . $data['phone'] . "</span>
-                                                    </td>
-                                                    <td class='align-middle text-center'>
-                                                        <span class='text-secondary text-xs font-weight-bold'>" . $data['created_at'] . "</span>
+                                                        <a href='tel:" . $data['phone'] . "' class='text-secondary text-xs font-weight-bold'>" . $data['phone'] . "</a>
                                                     </td>
                                                     <td class='align-middle'>
-                                                        <a href='javascript:;' class='text-secondary font-weight-bold text-xs' data-toggle='tooltip' data-original-title='Edit user'>
+                                                        <a href='patientView.php?patient-id=" . $data['id'] . "' class='btn btn-primary font-weight-bold text-xs' data-toggle='tooltip' data-original-title='Edit user'>
                                                             View
                                                         </a>
                                                     </td>

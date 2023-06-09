@@ -104,7 +104,7 @@ function message($msg)
                                 <div class="numbers">
                                     <p class="text-sm mb-0 text-uppercase font-weight-bold">Total Patients</p>
                                     <h5 class="font-weight-bolder">
-                                        <?php echo $patients->num_rows ?>
+                                        <?php echo $allPatients->num_rows ?>
                                     </h5>
                                     <p class="mb-0">
                                         <span class="text-success text-sm font-weight-bolder">Saafwan Dental & Ortho Dontics</span>
@@ -149,7 +149,7 @@ function message($msg)
                                                         <div class='d-flex px-2 py-1'>
                                                             <div class='d-flex flex-column justify-content-center'>
                                                                 <h6 class='mb-0 text-sm'>" . $data['name'] . "</h6>
-                                                                <p class='text-xs text-secondary mb-0'>" . $data['email'] . "</p>
+                                                                <a href='mailto:" . $data['email'] . "' class='text-xs text-secondary mb-0'>" . $data['email'] . "</a>
                                                             </div>
                                                         </div>
                                                     </td>
@@ -157,7 +157,7 @@ function message($msg)
                                                         <p class='text-xs font-weight-bold mb-0'>" . message($data['message']) . "</p>
                                                     </td>
                                                     <td class='align-middle text-center text-sm'>
-                                                        <p class='text-xs font-weight-bold mb-0'>" . $data['phone'] . "</p>
+                                                        <a href='tel:" . $data['phone'] . "' class='text-xs text-secondary font-weight-bold mb-0'>" . $data['phone'] . "</a>
                                                     </td>
                                                     <td class='align-middle text-center'>
                                                         <span class='text-secondary text-xs font-weight-bold'><p class='text-xs font-weight-bold mb-0'>" . $data['created_at'] . "</p></span>
@@ -181,8 +181,8 @@ function message($msg)
                                                     <td>
                                                         <div class='d-flex px-2 py-1'>
                                                             <div class='d-flex flex-column justify-content-center'>
-                                                                <h6 class='mb-0 text-sm'>" . $data['name'] . "</h6>
-                                                                <p class='text-xs text-secondary mb-0'>" . $data['email'] . "</p>
+                                                                <h6 class='mb-0 text-sm'>" . $data['name'] . " <span class='text-secondary mb-0'>(Anonymous)</span></h6>
+                                                                <a href='mailto:" . $data['email'] . "' class='text-xs text-secondary mb-0'>" . $data['email'] . "</a>
                                                             </div>
                                                         </div>
                                                     </td>
@@ -190,7 +190,7 @@ function message($msg)
                                                         <p class='text-xs font-weight-bold mb-0'>" . message($data['message']) . "</p>
                                                     </td>
                                                     <td class='align-middle text-center text-sm'>
-                                                        <p class='text-xs font-weight-bold mb-0'>" . $data['phone'] . "</p>
+                                                        <a href='tel:" . $data['phone'] . "' class='text-secondary text-xs font-weight-bold mb-0'>" . $data['phone'] . "</a>
                                                     </td>
                                                     <td class='align-middle text-center'>
                                                         <span class='text-secondary text-xs font-weight-bold'><p class='text-xs font-weight-bold mb-0'>" . $data['created_at'] . "</p></span>

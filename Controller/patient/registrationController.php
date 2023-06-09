@@ -25,8 +25,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $age = test($_POST["age"]);
     $gender = test($_POST["gender"]);
     $password = rand(100000, 999999);
-    $userSql = "SELECT * FROM patients WHERE status = true AND (phone = '$phone' OR email = '$email')";
-    $user = $db->query($userSql)->fetch_assoc();
+    $sql = "SELECT * FROM patients WHERE status = true AND (phone = '$phone' OR email = '$email')";
+    $user = $db->query($sql)->fetch_assoc();
+    $sql = "SELECT * FROM patients WHERE status = false AND (phone = '$phone' OR email = '$email')";
+    $disableUser = $db->query($sql)->fetch_assoc();
 
     if ($name == "" || $email == "" || $phone == "" || $gender == "" || $age == null)
         $isValid = false;
@@ -40,14 +42,21 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $isValid = false;
-        setcookie("reg", "<span class='alert alert-danger' role='alert' style='color: red; font-weight: bold; padding: 10px; background-color: khaki; border: 1px solid brown; border-radius: 5px; font-size: 12px'><i class='fas fa-exclamation-circle'></i> Invalid Email</span>", time() + 1, "/");
+        setcookie("reg", "<p class='alert alert-danger' role='alert' style='color: red; font-weight: bold; padding: 10px; background-color: khaki; border: 1px solid brown; border-radius: 5px; font-size: 12px'><i class='fas fa-exclamation-circle'></i> Invalid Email</p>", time() + 1, "/");
         header("location: ../../View/login.php");
         die();
     }
 
     if ($user["name"] != "") {
         $isValid = false;
-        setcookie("reg", "<span class='alert alert-danger' role='alert' style='color: red; font-weight: bold; padding: 10px; background-color: khaki; border: 1px solid brown; border-radius: 5px; font-size: 12px'><i class='fas fa-exclamation-circle'></i> Phone or Email already registered.</span>", time() + 1, "/");
+        setcookie("reg", "<p class='alert alert-danger' role='alert' style='color: red; font-weight: bold; padding: 10px; background-color: khaki; border: 1px solid brown; border-radius: 5px; font-size: 12px'><i class='fas fa-exclamation-circle'></i> This Phone or Email already registered.</p>", time() + 1, "/");
+        header("location: ../../View/login.php");
+        die();
+    }
+
+    if ($disableUser["name"] != "") {
+        $isValid = false;
+        setcookie("reg", "<p class='alert alert-danger' role='alert' style='color: red; font-weight: bold; padding: 10px; background-color: khaki; border: 1px solid brown; border-radius: 5px; font-size: 12px'><i class='fas fa-exclamation-circle'></i> Your account already disabled, To reactive <a href='contact.php'>contact with us</a></p>", time() + 1, "/");
         header("location: ../../View/login.php");
         die();
     }
@@ -58,11 +67,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $msg = "Welcome to Saafwan Dental & Ortho Dontics,<br><br> Best Dentalcare Solution In Your City <br>Now you can meet with your doctor through your patient portal. You can set appointment and also contact with doctor any time. We are here to help you to solution your dental problem with our qualified doctor. <br>You should use this password to login to your portal.<br><h2>" . $password . "</h2><br>Keep it on your mind, Don't share your password with anyone.<br><br>Saafwan Dental & Ortho Dontics<br><a href='mailto:$docEmail'>$docEmail</a><br><a href='tel:$docPhone'>$docPhone</a>";
         smtp_mailer($email, "Welcome to Saafwan Dental", $msg);
 
-        setcookie("reg", "<span class='alert alert-danger' role='alert' style='color: green; font-weight: bold; padding: 10px; background-color: aquamarine; border: 1px solid white; border-radius: 5px; font-size: 12px; text-align: center;'><i class='fas fa-check'></i> Registration Done! Check EMAIL</span>", time() + 1, "/");
+        setcookie("reg", "<p class='alert alert-danger' role='alert' style='color: green; font-weight: bold; padding: 10px; background-color: aquamarine; border: 1px solid white; border-radius: 5px; font-size: 12px; text-align: center;'><i class='fas fa-check'></i> Registration Done! Password has sent to your EMAIL</p>", time() + 1, "/");
         header("location: ../../View/login.php");
     } else {
-        setcookie("reg", "<span class='alert alert-danger' role='alert' style='color: red; font-weight: bold; padding: 10px; background-color: khaki; border: 1px solid brown; border-radius: 5px; font-size: 12px'><i class='fas fa-exclamation-circle'></i> Registration Incomplete.</span>", time() + 1, "/");
+        setcookie("reg", "<p class='alert alert-danger' role='alert' style='color: red; font-weight: bold; padding: 10px; background-color: khaki; border: 1px solid brown; border-radius: 5px; font-size: 12px'><i class='fas fa-exclamation-circle'></i> Registration Incomplete.</p>", time() + 1, "/");
         header("location: ../../View/login.php");
     }
 }
-?>

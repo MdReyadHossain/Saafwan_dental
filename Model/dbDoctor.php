@@ -1,6 +1,32 @@
 <?php
 require "dbConnect.php";
 
+function updateProfile($id, $name, $email, $phone, $chamber1, $chamber2)
+{
+    $db = connect();
+    $sql = "UPDATE doctors SET name = '$name', email = '$email', phone = '$phone', chamber1 = '$chamber1', chamber2 = '$chamber2' WHERE id = $id";
+    try {
+        $db->query($sql);
+    } catch (Exception $error) {
+        echo "Error " . $sql . "<br>" . $db->error;
+    } finally {
+        $db->close();
+    }
+}
+
+function changePassword($id, $password)
+{
+    $db = connect();
+    $sql = "UPDATE doctors SET password = '$password' WHERE id = $id";
+    try {
+        $db->query($sql);
+    } catch (Exception $error) {
+        echo "Error " . $sql . "<br>" . $db->error;
+    } finally {
+        $db->close();
+    }
+}
+
 function setAppointment($patientId, $appointmentDate, $chamber)
 {
     $db = connect();

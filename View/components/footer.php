@@ -5,10 +5,10 @@
                 <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4">Get In Touch</h4>
                 <p class="mb-4">We are a specialized dental clinic conveniently located in Dhaka, Bangladesh. Our team of specialist</p>
                 <p class="mb-2">
-                    <a href="https://goo.gl/maps/UNbvXS7gSgkVrHSc9?coh=178571&entry=tt" style="color: aliceblue;"><i class="fa fa-map-marker-alt text-primary me-3"></i><?php echo $doc["chamber1"] ?></a>
+                    <a href="https://goo.gl/maps/F2NVNdZatgLU3zuz6?coh=178571&entry=tt" style="color: aliceblue;"><i class="fa fa-map-marker-alt text-primary me-3"></i><?php echo $doc["chamber1"] ?></a>
                 </p>
                 <p class="mb-2">
-                    <a href="https://goo.gl/maps/F2NVNdZatgLU3zuz6?coh=178571&entry=tt" style="color: aliceblue;"><i class="fa fa-map-marker-alt text-primary me-3"></i><?php echo $doc["chamber2"] ?></a>
+                    <a href="https://goo.gl/maps/UNbvXS7gSgkVrHSc9?coh=178571&entry=tt" style="color: aliceblue;"><i class="fa fa-map-marker-alt text-primary me-3"></i><?php echo $doc["chamber2"] ?></a>
                 </p>
                 <p class="mb-2"><a href="mailto:<?php echo $doc["email"] ?>" style="color: aliceblue;"><i class="fa fa-envelope text-primary me-3"></i><?php echo $doc["email"] ?></a></p>
                 <p class="mb-0"><a href="tel:<?php echo $doc["phone"] ?>" style="color: aliceblue;"><i class="fa fa-phone-alt text-primary me-3"></i><?php echo $doc["phone"] ?></a></p>

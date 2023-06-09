@@ -4,10 +4,12 @@ require "../Model/dbPatient.php";
 require "smtpController.php";
 $db = connect();
 $docSql = $db->query("SELECT * FROM doctors");
-$patSql = $db->query("SELECT * FROM patients");
+$patSql = $db->query("SELECT * FROM patients WHERE status = true");
+$sql = "SELECT * FROM patients WHERE status = false";
+$disableUser = $db->query($sql);
 
 $phone = $pass = "";
-$isValid = $isEmpty = $isDoc = false;
+$isValid = $isEmpty = $isDoc = $isPatient = false;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     function test($data)
@@ -51,6 +53,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $_SESSION["age"] = $patient["age"];
                     $_SESSION["gender"] = $patient["gender"];
                     header("location: ../View/patient/dashboard.php");
+                    $isPatient = true;
+                    $isValid = true;
+                }
+            }
+        }
+        if ($disableUser->num_rows > 0 and !$isPatient) {
+            while ($disable = $disableUser->fetch_assoc()) {
+                if ($disable["phone"] == $phone) {
+                    setcookie("reg", "<p class='alert alert-danger' role='alert' style='color: red; font-weight: bold; padding: 10px; background-color: khaki; border: 1px solid brown; border-radius: 5px; font-size: 12px'><i class='fas fa-exclamation-circle'></i> Your account already disabled, To reactive account <a href='contact.php'>contact with us</a></p>", time() + 1, "/");
+                    header("location: ../View/login.php");
+                    die();
                     $isValid = true;
                 }
             }

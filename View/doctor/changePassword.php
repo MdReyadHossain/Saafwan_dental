@@ -95,7 +95,7 @@
                                 <div class="numbers">
                                     <p class="text-sm mb-0 text-uppercase font-weight-bold">Total Patients</p>
                                     <h5 class="font-weight-bolder">
-                                        <?php echo $patients->num_rows ?>
+                                        <?php echo $allPatients->num_rows ?>
                                     </h5>
                                     <p class="mb-0">
                                         <span class="text-success text-sm font-weight-bolder">Saafwan Dental & Ortho Dontics</span>
@@ -119,27 +119,33 @@
                                 <div class="d-flex align-items-center">
                                     <p class="mb-0"><b>Change Password</b></p>
                                 </div>
+                                <?php
+                                if (isset($_COOKIE["chng-pass"]))
+                                    echo $_COOKIE["chng-pass"];
+                                ?>
                             </form>
                         </div>
-                        <form action="" method="POST">
+                        <form action="../../Controller/doctor/changePassController.php" method="POST">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="example-text-input" class="form-control-label">Old Password</label>
-                                            <input class="form-control" type="password" name="old-pass">
+                                            <label for="example-text-input" class="form-control-label">Old Password</label> <span id='old-pass'></span>
+                                            <input class="form-control" id="password" type="password" name="old-pass" onkeyup="oldPass(this.value)" required>
+                                            <input type="number" name="id" value="<?php echo $doc['id'] ?>" hidden>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="example-text-input" class="form-control-label">New Password</label>
-                                            <input class="form-control" type="password" name="new-pass">
+                                            <input class="form-control" type="password" id="new-pass" name="new-pass" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="example-text-input" class="form-control-label">Confirm Password</label>
-                                            <input class="form-control" type="password" placeholder="Retype New Password" name="con-pass">
+                                            <label for="example-text-input" class="form-control-label">Confirm Password</label> <span class='' id='con-pass-error'></span>
+                                            <input class="form-control" type="password" placeholder="Retype New Password" id="con-pass" name="con-pass" onkeyup="confirmPass(this.value)" required>
+                                            <p class="text-danger"></p>
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-primary btn-lg ms-auto">Change</button>
@@ -226,6 +232,39 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="../../assets/js/argon-dashboard.min.js?v=2.0.4"></script>
+    <script>
+        function confirmPass(pass) {
+            let newPass = document.getElementById("new-pass");
+            let conPass = document.getElementById("con-pass");
+
+            let passError = document.getElementById("con-pass-error");
+
+            if (newPass.value == "" || pass == "")
+                passError.innerHTML = "";
+            else if (newPass.value != "" && pass != "" && pass == newPass.value) {
+                passError.innerHTML = "<i class='fas fa-check'></i> Matched";
+                passError.classList = "text-sm font-weight-bold text-success";
+            } else if (newPass.value != "" || pass != newPass.value) {
+                passError.innerHTML = "<i class='fas fa-times'></i> Wrong";
+                passError.classList = "text-sm font-weight-bold text-danger";
+            }
+        }
+
+        function oldPass(pass) {
+            if (pass == "") {
+                document.getElementById("old-pass").innerHTML = "";
+                return;
+            } else {
+                let xhttp = new XMLHttpRequest();
+                xhttp.onload = function() {
+                    document.getElementById("old-pass").innerHTML = this.responseText;
+                }
+                xhttp.open("POST", "../../Controller/doctor/checkPassController.php");
+                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhttp.send("pass=" + pass);
+            }
+        }
+    </script>
 </body>
 
 </html>

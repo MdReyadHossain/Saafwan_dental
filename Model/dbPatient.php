@@ -20,3 +20,29 @@ function patientRegistration($name, $email, $phone, $password, $gender, $age)
 
     $db->close();
 }
+
+function deletePatient($id)
+{
+    $db = connect();
+    $sql = "UPDATE patients SET status = false WHERE id = $id";
+    try {
+        $db->query($sql);
+    } catch (Exception $error) {
+        echo "Error " . $sql . "<br>" . $db->error;
+    } finally {
+        $db->close();
+    }
+}
+
+function activePatient($id)
+{
+    $db = connect();
+    $sql = "UPDATE patients SET status = true WHERE id = $id";
+    try {
+        $db->query($sql);
+    } catch (Exception $error) {
+        echo "Error " . $sql . "<br>" . $db->error;
+    } finally {
+        $db->close();
+    }
+}

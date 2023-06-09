@@ -106,7 +106,7 @@
                                 <div class="numbers">
                                     <p class="text-sm mb-0 text-uppercase font-weight-bold">Total Patients</p>
                                     <h5 class="font-weight-bolder">
-                                        <?php echo $patients->num_rows ?>
+                                        <?php echo $allPatients->num_rows ?>
                                     </h5>
                                     <p class="mb-0">
                                         <span class="text-success text-sm font-weight-bolder">Saafwan Dental & Ortho Dontics</span>
@@ -135,10 +135,11 @@
                                 <div class="col-8">
                                     <div class="numbers">
                                         <h5 class="font-weight-bolder">
-                                            <?php echo $user['name'] ?>
+                                            <?php echo $user['name']; ?>
+                                            <span class="text-sm mb-0 font-weight-bold"><?php if ($getUser == "anonymous-id") echo "(Anonymous)"; ?></span>
                                         </h5>
-                                        <p class="text-sm mb-0 font-weight-bold"><?php echo $user['email'] ?></p>
-                                        <p class="text-sm mb-0 text-uppercase"><?php echo $user['phone'] ?></p>
+                                        <a href="mailto:<?php echo $user['email'] ?>" class="text-secondary text-sm mb-0 font-weight-bold"><?php echo $user['email'] ?></a><br>
+                                        <a href="tel:<?php echo $user['phone'] ?>" class="text-secondary text-sm text-uppercase"><?php echo $user['phone'] ?></a><br>
                                         <br>
                                         <p class="mb-0">
                                             <span class="text-secondary text-sm font-weight-bolder"><?php echo $user['message'] ?></span>

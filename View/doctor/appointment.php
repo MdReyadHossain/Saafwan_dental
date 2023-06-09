@@ -115,7 +115,7 @@ function chamber2($chamber)
                                 <div class="numbers">
                                     <p class="text-sm mb-0 text-uppercase font-weight-bold">Total Patients</p>
                                     <h5 class="font-weight-bolder">
-                                        <?php echo $patients->num_rows ?>
+                                        <?php echo $allPatients->num_rows ?>
                                     </h5>
                                     <p class="mb-0">
                                         <span class="text-success text-sm font-weight-bolder">Saafwan Dental & Ortho Dontics</span>
@@ -163,12 +163,12 @@ function chamber2($chamber)
                                                         <div class='d-flex px-2 py-1'>
                                                             <div class='d-flex flex-column justify-content-center'>
                                                                 <h6 class='mb-0 text-sm'>" . $data['name'] . "</h6>
-                                                                <p class='text-xs text-secondary mb-0'>" . $data['email'] . "</p>
+                                                                <a href='mailto:" . $data['email'] . "' class='text-xs text-secondary mb-0'>" . $data['email'] . "</a>
                                                             </div>
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <p class='text-xs font-weight-bold mb-0'>" . $data['phone'] . "</p>
+                                                        <a href='tel:" .  $data['phone'] . "' class='text-secondary text-xs font-weight-bold mb-0'>" . $data['phone'] . "</a>
                                                     </td>
                                                     <td class='align-middle text-center text-sm'>
                                                         <p class='text-xs font-weight-bold mb-0'>" . $data['age'] . "</p>

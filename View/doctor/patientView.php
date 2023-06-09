@@ -24,9 +24,23 @@
     <div class="min-height-300 bg-primary position-absolute w-100"></div>
     <!-- Sidebar -->
     <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 fixed-start " id="sidenav-main">
-        <?php include("../components/doctorSidebar.php"); ?>
+        <?php
+        include("../components/doctorSidebar.php");
+        function chamber($chamber)
+        {
+            global $doc;
+            if ($chamber == "1")
+                return $doc["chamber1"];
+            else if ($chamber == "2")
+                return $doc["chamber2"];
+        }
+        if (isset($_GET['patient-id'])) {
+            $id = $_GET['patient-id'];
+            $getUser = "patient-id";
+            $user = $db->query("SELECT * FROM patients WHERE id = " . $id . "")->fetch_assoc();
+        }
+        ?>
     </aside>
-
     <main class="main-content position-relative border-radius-lg ">
         <!-- Navbar -->
         <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur" data-scroll="false">
@@ -34,9 +48,9 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                         <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">Doctor</a></li>
-                        <li class="breadcrumb-item text-sm text-white active" aria-current="page">Doctor Profile</li>
+                        <li class="breadcrumb-item text-sm text-white active" aria-current="page">Patient Messages</li>
                     </ol>
-                    <h6 class="font-weight-bolder text-white mb-0">Profile</h6>
+                    <h6 class="font-weight-bolder text-white mb-0">Messages</h6>
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -112,127 +126,90 @@
                 </div>
             </div>
             <div class="row my-4">
-                <div class="col-md-8">
-                    <form action="../../Controller/doctor/updateProfileController.php" method="POST">
-                        <div class="card">
-                            <div class="card-header pb-0">
-                                <div class="d-flex align-items-center">
-                                    <p class="mb-0"><b>Edit Profile</b></p>
-                                    <button class="btn btn-primary btn-sm ms-auto" type="submit">Submit</button>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <p class="text-uppercase text-sm">User Information</p>
-                                <?php
-                                if (isset($_COOKIE['update']))
-                                    echo $_COOKIE['update'];
-                                ?>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="example-text-input" class="form-control-label">Name</label>
-                                            <input class="form-control" type="text" name="name" value="<?php echo $_SESSION['name'] ?>" required>
-                                            <input type="number" name="id" value="<?php echo $_SESSION['id'] ?>" hidden>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="example-text-input" class="form-control-label">Chamber-1</label>
-                                            <input class="form-control" type="text" name="chamber1" value="<?php echo $_SESSION['chamber1'] ?>" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="example-text-input" class="form-control-label">Chamber-2</label>
-                                            <input class="form-control" type="text" name="chamber2" value="<?php echo $_SESSION['chamber2'] ?>" required>
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr class="horizontal dark">
-                                <p class="text-uppercase text-sm">Contact Information</p>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="example-text-input" class="form-control-label">Email address</label>
-                                            <input class="form-control" type="email" name="email" value="<?php echo $_SESSION['email'] ?>" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="example-text-input" class="form-control-label">Phone Number</label>
-                                            <input class="form-control" type="text" name="phone" value="<?php echo $_SESSION['phone'] ?>" required>
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr class="horizontal dark">
-                                <p class="text-uppercase text-sm">About me</p>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="example-text-input" class="form-control-label">About me</label>
-                                            <input class="form-control" type="text" style="cursor: not-allowed;" value="We are a specialized dental clinic conveniently located in Dhaka, Bangladesh. Our team of specialist" disabled>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                <div class="col-lg-12 mb-4">
+                    <div class="card mb-4 h-100">
+                        <div class="d-flex align-items-center">
+                            <h6 class="m-4">Message</h6>
+                            <a href="dashboard.php" class="btn btn-primary btn-sm ms-auto m-4">Dashboard</a>
                         </div>
-                    </form>
-                </div>
-                <div class="col-md-4">
-                    <div class="card card-profile">
-                        <img src="../../assets/img/team-4.jpg" alt="Image placeholder" class="card-img-top">
-                        <div class="row justify-content-center">
-                            <div class="col-4 col-lg-4 order-lg-2">
-                                <div class="mt-n4 mt-lg-n6 mb-4 mb-lg-0">
-                                    <a href="javascript:;">
-                                        <img src="../../assets/img/profile.jpg" class="rounded-circle img-fluid border border-2 border-white">
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body pt-0">
+                        <hr style=" border: 0; height: 0; border-top: 1px solid rgba(0, 0, 0, 0.4); border-bottom: 1px solid rgba(255, 255, 255, 0.3);" />
+                        <div class="card-body px-4 pt-0 pb-2" style="height: 50vh; overflow-y: scroll;">
                             <div class="row">
-                                <div class="col">
-                                    <div class="d-flex justify-content-center mt-4">
-                                        <div class="d-grid text-center">
-                                            <span class="text-lg font-weight-bolder"><?php echo $allPatients->num_rows ?></span>
-                                            <span class="text-sm opacity-8">Patient</span>
-                                        </div>
-                                        <div class="d-grid text-center mx-4">
-                                            <span class="text-lg font-weight-bolder"><?php echo $malePatients->num_rows ?></span>
-                                            <span class="text-sm opacity-8">Male</span>
-                                        </div>
-                                        <div class="d-grid text-center">
-                                            <span class="text-lg font-weight-bolder"><?php echo $femalePatients->num_rows ?></span>
-                                            <span class="text-sm opacity-8">Female</span>
-                                        </div>
+                                <div class="col-8">
+                                    <div class="numbers">
+                                        <h5 class="font-weight-bolder">
+                                            <?php echo $user['name'] ?>
+                                        </h5>
+                                        <table class="table align-items-center mb-0">
+                                            <tbody>
+                                                <tr>
+                                                    <th>ID: </th>
+                                                    <td><span class="text-secondary text-sm"><?php echo $user['id'] ?></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Email:</th>
+                                                    <td>
+                                                        <a href="mailto:<?php echo $user['email'] ?>" class="text-sm mb-0 font-weight-bold"><?php echo $user['email'] ?></a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Phone Number: </th>
+                                                    <td>
+                                                        <a href="tel:<?php echo $user['phone'] ?>" class="text-sm mb-0 text-uppercase"><?php echo $user['phone'] ?></a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Age: </th>
+                                                    <td><span class="text-secondary text-sm"><?php echo $user['age'] ?></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Gender: </th>
+                                                    <td><span class="text-secondary text-sm"><?php echo $user['gender'] ?></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Registerd at: </th>
+                                                    <td><span class="text-secondary text-sm"><?php echo $user['created_at'] ?></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Preferred Chamber: </th>
+                                                    <td><span class="text-secondary text-sm"><?php echo chamber($user['default_chamber']) ?></span></td>
+                                                </tr>
+                                                <tr></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="col-4 text-end">
+                                    <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
+                                        <i class="fas fa-envelope-open-text text-2xl opacity-10" aria-hidden="true"></i>
                                     </div>
                                 </div>
                             </div>
-                            <div class="text-center mt-4">
-                                <h5>
-                                    <?php echo $doc['name'] ?>
-                                </h5>
-                                <div class="h6 font-weight-300">
-                                    <i class="ni location_pin mr-2"></i><?php echo $doc['email'] ?>
-                                </div>
-                                <div class="h6 mt-4">
-                                    <i class="ni business_briefcase-24 mr-2"></i>Managing Director
-                                </div>
-                                <div>
-                                    <i class="ni education_hat mr-2"></i>Saafwan Dental & Ortho Dontics
-                                </div>
-                            </div>
                         </div>
+                        <?php
+                        if ($user['status'] == true) {
+                            echo "
+                            <a href='../../Controller/doctor/deletePatientController.php?patient-id=" .  $user['id'] . "' class='btn btn-danger font-weight-bold text-xs mx-5'>
+                                Disable Patient Account
+                            </a>
+                            ";
+                        }
+                        if ($user['status'] == false) {
+                            echo "
+                            <a href='../../Controller/doctor/activePatientController.php?patient-id=" .  $user['id'] . "' class='btn btn-success font-weight-bold text-xs w-lg-25 mx-5'>
+                                Active Account
+                            </a>
+                            ";
+                        }
+                        ?>
                     </div>
                 </div>
-            </div>
 
-            <div class="row mt-4">
+                <div class="row mt-4">
+                </div>
+                <!-- footer  -->
+                <?php include("../components/doctorFooter.php"); ?>
             </div>
-            <!-- footer  -->
-            <?php include("../components/doctorFooter.php"); ?>
-        </div>
     </main>
     <div class="fixed-plugin">
         <div class="card shadow-lg">
