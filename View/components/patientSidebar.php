@@ -1,3 +1,28 @@
+<?php
+require "../../Model/dbConnect.php";
+session_start();
+if (!isset($_SESSION["patient"])) {
+    header("Location: ../login.php");
+}
+
+$db = connect();
+$doc = $db->query("SELECT * FROM doctors WHERE id = 1")->fetch_assoc();
+
+$allPatients = $db->query("SELECT * FROM patients");
+$patient = $db->query("SELECT * FROM patients WHERE status = true AND id = " . $_SESSION['id'] . "")->fetch_assoc();
+$patientsMsg = $db->query("SELECT patients.*, messages.* FROM messages INNER JOIN patients ON messages.patient_id = patients.id WHERE messages.status = true");
+
+$anonymousMsg = $db->query("SELECT * FROM anonymous WHERE status = true");
+
+$appointment = $db->query("SELECT * FROM appointments WHERE patient_id = " . $_SESSION['id'] . " ORDER BY id DESC");
+
+$appointmentPending = $db->query("SELECT patients.*, appointments.* FROM appointments INNER JOIN patients ON appointments.patient_id = patients.id WHERE appointments.patient_id = " . $_SESSION['id'] . " AND appointments.status = 'pending' AND appointments.user = 'patient'")->fetch_assoc();
+
+$appointmentConfirm = $db->query("SELECT patients.*, appointments.* FROM appointments INNER JOIN patients ON appointments.patient_id = patients.id WHERE appointments.patient_id = " . $_SESSION['id'] . " AND appointments.status = 'pending' AND appointments.user = 'doctor'")->fetch_assoc();
+
+$appointmentLog = $db->query("SELECT patients.*, appointments.* FROM appointments INNER JOIN patients ON appointments.patient_id = patients.id WHERE appointments.user = 'doctor' ORDER BY appointments.status DESC");
+?>
+
 <div class="sidenav-header">
     <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
     <a class="navbar-brand m-0" href="../../">
@@ -14,7 +39,7 @@
         </table>
     </a>
 </div>
-<div class="collapse navbar-collapse px-4 w-auto" style="color: white;" id="sidenav-collapse-main">
+<div class="collapse navbar-collapse w-auto" style="color: white; height: 700px;" id="sidenav-collapse-main">
     <ul class="navbar-nav">
         <li class="nav-item">
             <a class="nav-link text-white" href="dashboard.php" id="dashboard">

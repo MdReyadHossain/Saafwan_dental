@@ -1,10 +1,3 @@
-<?php
-session_start();
-if (!isset($_SESSION["patient"])) {
-    header("Location: ../login.php");
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,9 +25,9 @@ if (!isset($_SESSION["patient"])) {
         <?php include("../components/patientSidebar.php"); ?>
     </aside>
 
-    <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+    <main class="main-content position-relative border-radius-lg ">
         <!-- Navbar -->
-        <nav class="navbar navbar-main navbar-expand-lg mx-5 px-0 shadow-none rounded" id="" navbar-scroll="true">
+        <nav class="navbar navbar-main navbar-expand-lg mx-5 px-0 shadow-none rounded" id="" data-scroll="false" navbar-scroll="true">
             <div class="container-fluid py-1 px-2">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb bg-transparent mb-1 pb-0 pt-1 px-0 me-sm-6 me-5">
@@ -61,7 +54,7 @@ if (!isset($_SESSION["patient"])) {
                         </li>
                         <li class="nav-item dropdown ps-2 d-flex align-items-center">
                             <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="../../assets/img/patient.png" class="avatar avatar-sm" alt="avatar" />
+                                <img src="../../assets/img/patient.png" class="avatar avatar-sm" alt="avatar" title="<?php echo $_SESSION["name"]; ?>" />
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
                                 <li class="">

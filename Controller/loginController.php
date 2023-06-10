@@ -52,6 +52,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $_SESSION["phone"] = $patient["phone"];
                     $_SESSION["age"] = $patient["age"];
                     $_SESSION["gender"] = $patient["gender"];
+                    $_SESSION["default_chamber"] = $patient["default_chamber"];
+                    $_SESSION["created_at"] = $patient["created_at"];
                     header("location: ../View/patient/dashboard.php");
                     $isPatient = true;
                     $isValid = true;
@@ -63,8 +65,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if ($disable["phone"] == $phone) {
                     setcookie("reg", "<p class='alert alert-danger' role='alert' style='color: red; font-weight: bold; padding: 10px; background-color: khaki; border: 1px solid brown; border-radius: 5px; font-size: 12px'><i class='fas fa-exclamation-circle'></i> Your account already disabled, To reactive account <a href='contact.php'>contact with us</a></p>", time() + 1, "/");
                     header("location: ../View/login.php");
-                    die();
                     $isValid = true;
+                    die();
                 }
             }
         }

@@ -1,10 +1,3 @@
-<?php
-session_start();
-if (!isset($_SESSION["patient"])) {
-    header("Location: ../login.php");
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,7 +25,7 @@ if (!isset($_SESSION["patient"])) {
         <?php include("../components/patientSidebar.php"); ?>
     </aside>
 
-    <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+    <main class="main-content position-relative border-radius-lg ">
         <!-- Navbar -->
         <nav class="navbar navbar-main navbar-expand-lg mx-5 px-0 shadow-none rounded" id="" navbar-scroll="true">
             <div class="container-fluid py-1 px-2">
@@ -61,7 +54,7 @@ if (!isset($_SESSION["patient"])) {
                         </li>
                         <li class="nav-item dropdown ps-2 d-flex align-items-center">
                             <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="../../assets/img/patient.png" class="avatar avatar-sm" alt="avatar" />
+                                <img src="../../assets/img/patient.png" class="avatar avatar-sm" alt="avatar" title="<?php echo $_SESSION["name"]; ?>" />
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
                                 <li class="">
@@ -87,25 +80,54 @@ if (!isset($_SESSION["patient"])) {
         <!-- End Navbar -->
         <div class="container-fluid py-4 px-3">
             <hr class="my-0">
+            <?php
+            if (isset($_COOKIE["error"]))
+                echo $_COOKIE["error"];
+            ?>
             <div class="container-fluid py-2">
                 <div class="row my-3">
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-8">
-                                    <div class="numbers">
-                                        <p class="text-sm mb-0 text-uppercase font-weight-bold">Upcoming appointment on</p>
-                                        <h5 class="font-weight-bolder">
-                                            23-5-2023
+                                <div class='col-8'>
+                                    <div class='numbers'>
+                                        <p class='text-dark text-sm mb-0 font-weight-bold'>
+                                            <?php
+                                            if ($appointmentConfirm["name"] != "")
+                                                echo "Upcoming Appointment";
+                                            else if ($appointmentPending["name"] != "")
+                                                echo "Please wait for Doctor confirmation. Appointment Pending...";
+                                            else
+                                                echo "Set an appointment to meet with doctor";
+                                            ?>
+                                        </p>
+                                        <h5 class='font-weight-bolder'>
+                                            <?php
+                                            if ($appointmentConfirm["name"] != "")
+                                                echo date('d-m-Y', strtotime($appointmentConfirm["appointment_at"]));
+                                            ?>
                                         </h5>
-                                        <p class="mb-0">
-                                            <span class="text-success text-sm font-weight-bolder">Kuril Bishwa Road, Dhaka, Bangladesh</span>
+                                        <p class='mb-0'>
+                                            <span class='text-success text-sm font-weight-bolder'>
+                                                <?php
+                                                if ($appointmentConfirm["name"] != "")
+                                                    echo $doc["chamber" . $appointmentConfirm["chamber"] . ""];
+                                                ?>
+                                            </span>
                                         </p>
                                     </div>
                                 </div>
-                                <div class="col-4 text-end">
-                                    <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
-                                        <i class="fas fa-calendar-check text-lg opacity-10" aria-hidden="true"></i>
+                                <div class='col-4 text-end'>
+                                    <div class='shadow-primary text-center'>
+                                        <?php
+                                        if ($appointmentPending["name"] != "") {
+                                            echo "
+                                            <a href='../../Controller/patient/appointmentCancelController.php?appointment=" . $appointmentPending['id'] . "' type='button' class='btn btn-danger btn-sm  btn-icon d-flex justify-content-center ms-md-auto mb-2 mr-4 p-2 w-lg-25 w-md-25'>
+                                                <span class='btn-inner--text text-center'>Cancel</span>
+                                            </a>
+                                            ";
+                                        }
+                                        ?>
                                     </div>
                                 </div>
                             </div>
@@ -114,44 +136,55 @@ if (!isset($_SESSION["patient"])) {
                 </div>
             </div>
             <div class="card mx-2 px-2">
-                <div class="card-header pb-0">
-                    <form action="appointmentHistory.php" method="POST">
+                <?php
+                if ($appointmentConfirm["name"] == "" && $appointmentPending["name"] == "") {
+                ?>
+                    <div class="card-header pb-0">
                         <div class="d-flex align-items-center">
                             <p class="mb-0"><b>Set Appointment</b></p>
-                            <button class="btn btn-primary btn-sm ms-auto">Appointment History</button>
+                        </div>
+                        <?php
+                        if (isset($_COOKIE["appointment"]))
+                            echo $_COOKIE["appointment"];
+                        ?>
+                    </div>
+                    <form action="../../Controller/patient/appointmentSetController.php" method="POST">
+                        <div class="card-body" id="app">
+                            <p class="text-uppercase text-sm">Appointment Information</p>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="number" name="id" value="<?php echo $_SESSION['id'] ?>" hidden>
+                                        <label for="example-text-input" class="form-control-label">Appointment Date</label>
+                                        <input class="form-control" type="date" min="<?php echo date('Y-m-d'); ?>" max="<?php echo date('Y-m-d', strtotime(date('Y-m-d') . " +7 day")); ?>" name="appointment-date">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="example-text-input" class="form-control-label">Chamber</label>
+                                        <select class="form-control" name="chamber" id="chamber">
+                                            <option value="" disabled selected>-- Select Chamber --</option>
+                                            <option value="1"><?php echo $doc["chamber1"] ?></option>
+                                            <option value="2"><?php echo $doc["chamber2"] ?></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="example-text-input" class="form-control-label">Message</label>
+                                        <textarea class="form-control" name="message" id="" rows="4" placeholder="Write your problem"></textarea>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary btn-lg ms-auto">Submit</button>
+                            </div>
                         </div>
                     </form>
-                </div>
-                <form action="" method="POST">
-                    <div class="card-body">
-                        <p class="text-uppercase text-sm">Appointment Information</p>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="example-text-input" class="form-control-label">Appointment Date</label>
-                                    <input class="form-control" type="date" name="app-date">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="example-text-input" class="form-control-label">Chamber</label>
-                                    <select class="form-control" name="chamber" id="">
-                                        <option value="" disabled selected>-- Select Chamber --</option>
-                                        <option value="Kuril Bishwa Road, Dhaka, Bangladesh">Kuril Bishwa Road, Dhaka, Bangladesh</option>
-                                        <option value="529, Solmaid, Dhaka, Bangladesh">529, Solmaid, Dhaka, Bangladesh</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="example-text-input" class="form-control-label">Message</label>
-                                    <textarea class="form-control" name="message" id="" rows="4" placeholder="Write your problem"></textarea>
-                                </div>
-                            </div>
-                            <button class="btn btn-primary btn-lg ms-auto">Submit</button>
-                        </div>
-                    </div>
-                </form>
+                <?php
+                }
+                ?>
+            </div>
+            <div class="mx-2">
+                <a href="appointmentHistory.php" class="btn btn-primary btn-sm ms-auto m-3 float-right">Appointment History</a>
             </div>
             <!-- Footer -->
             <?php include("../components/patientFooter.php"); ?>
@@ -203,9 +236,9 @@ if (!isset($_SESSION["patient"])) {
     <script src="../../assets/js/core/popper.min.js"></script>
     <script src="../../assets/js/core/bootstrap.min.js"></script>
     <script src="../../assets/js/plugins/perfect-scrollbar.min.js"></script>
-    <script src="../../assets/js/plugins/smooth-scrollbar.min.js"></script>
+    <!-- <script src="../../assets/js/plugins/smooth-scrollbar.min.js"></script> -->
     <script src="../../assets/js/plugins/chartjs.min.js"></script>
-    <script>
+    <!-- <script>
         var win = navigator.platform.indexOf('Win') > -1;
         if (win && document.querySelector('#sidenav-scrollbar')) {
             var options = {
@@ -213,7 +246,7 @@ if (!isset($_SESSION["patient"])) {
             }
             Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
         }
-    </script>
+    </script> -->
     <!-- Github buttons -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->

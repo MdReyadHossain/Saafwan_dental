@@ -5,7 +5,6 @@ if ($url == "index.php")
 else
     require "../Model/dbConnect.php";
 
-
 $db = connect();
 $sql = "SELECT * FROM doctors where id = 1";
 $doc = $db->query($sql)->fetch_assoc();

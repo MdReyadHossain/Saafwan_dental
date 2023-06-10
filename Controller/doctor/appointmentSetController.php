@@ -33,6 +33,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($appointmentDate) || empty($patientId) || empty($chamber))
         $isValid = false;
 
+    $today = new DateTime('-1 days');
+    $futureDate = new DateTime('+7 days');
+    $appointmentvalid = new DateTime("" . $appointmentDate . "");
+    if ($appointmentvalid < $today || $appointmentvalid > $futureDate)
+        $isValid = false;
+
     if ($appointmentQuery->num_rows > 0) {
         $isValid = false;
     }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 08, 2023 at 11:35 PM
+-- Generation Time: Jun 10, 2023 at 11:31 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.2
 
@@ -76,8 +76,11 @@ CREATE TABLE `appointments` (
 
 INSERT INTO `appointments` (`id`, `user`, `chamber`, `appointment_at`, `created_at`, `cancel_at`, `status`, `patient_id`) VALUES
 (2, 'patient', 2, '2023-06-07', '2023-06-07', NULL, 'pending', 22),
-(3, 'doctor', 2, '2023-06-09', '2023-06-08', NULL, 'pending', 20),
-(4, 'doctor', 1, '2023-06-09', '2023-06-08', NULL, 'pending', 21);
+(3, 'doctor', 2, '2023-06-09', '2023-06-08', NULL, 'done', 20),
+(4, 'doctor', 1, '2023-06-09', '2023-06-08', NULL, 'pending', 21),
+(6, 'doctor', 1, '2023-06-12', '2023-06-10', NULL, 'cancel', 20),
+(8, 'doctor', 1, '2023-06-10', '2023-06-10', NULL, 'cancel', 20),
+(17, 'doctor', 1, '2023-06-10', '2023-06-10', NULL, 'cancel', 20);
 
 -- --------------------------------------------------------
 
@@ -102,7 +105,7 @@ CREATE TABLE `doctors` (
 --
 
 INSERT INTO `doctors` (`id`, `name`, `email`, `phone`, `password`, `created_at`, `deleted_at`, `chamber1`, `chamber2`) VALUES
-(1, 'Dr. Fida Haque', 'reyadhosen@gmail.com', '01713115050', 'saafwan123', '2023-06-03', NULL, 'Kuril Bishwa Road, Dhaka, Bangladesh', '529, Solmaid, Dhaka, Bangladesh');
+(1, 'Dr. Fida Haque', 'reyadhosen@gmail.com', '01713115050', 'saafwan123', '2023-06-03', NULL, '529, Solmaid, Dhaka, Bangladesh', 'Kuril Bishwa Road, Dhaka, Bangladesh');
 
 -- --------------------------------------------------------
 
@@ -139,6 +142,7 @@ CREATE TABLE `patients` (
   `password` varchar(20) NOT NULL,
   `age` int(200) DEFAULT NULL,
   `gender` varchar(10) DEFAULT NULL,
+  `default_chamber` int(11) DEFAULT NULL,
   `created_at` date DEFAULT NULL,
   `status` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -147,10 +151,10 @@ CREATE TABLE `patients` (
 -- Dumping data for table `patients`
 --
 
-INSERT INTO `patients` (`id`, `name`, `phone`, `email`, `password`, `age`, `gender`, `created_at`, `status`) VALUES
-(20, 'Reyad Hossain', '01956394373', 'reyadhosen@gmail.com', '605908', 22, 'Male', '2023-06-05', 1),
-(21, 'Ifat Hasan', '01956394372', 'blazeaxelspy@gmail.com', '557419', 22, 'Male', '2023-06-06', 1),
-(22, 'Munira Zebin', '01745482666', 'munirazebin229@gmail.com', '713392', 20, 'Female', '2023-06-06', 1);
+INSERT INTO `patients` (`id`, `name`, `phone`, `email`, `password`, `age`, `gender`, `default_chamber`, `created_at`, `status`) VALUES
+(20, 'Reyad Hossain', '01956394373', 'reyadhosen@gmail.com', '605908', 22, 'Male', 1, '2023-06-05', 1),
+(21, 'Ifat Hasan', '01956394372', 'blazeaxelspy@gmail.com', '557419', 22, 'Male', 1, '2023-06-06', 1),
+(22, 'Munira Zebin', '01745482666', 'munirazebin229@gmail.com', '713392', 20, 'Female', 1, '2023-06-06', 1);
 
 -- --------------------------------------------------------
 
@@ -242,7 +246,7 @@ ALTER TABLE `anonymous`
 -- AUTO_INCREMENT for table `appointments`
 --
 ALTER TABLE `appointments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `doctors`

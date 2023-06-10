@@ -21,6 +21,47 @@ function patientRegistration($name, $email, $phone, $password, $gender, $age)
     $db->close();
 }
 
+function setAppointment($id, $appointmentDate, $chamber)
+{
+    $db = connect();
+    $createDate = date('Y-m-d');
+    $sql = "INSERT INTO appointments(user, chamber, appointment_at, created_at, status, patient_id) VALUES ('patient', '$chamber', '$appointmentDate', '$createDate', 'pending', '$id')";
+    try {
+        $db->query($sql);
+    } catch (Exception $error) {
+        echo "Error " . $sql . "<br>" . $db->error;
+    } finally {
+        $db->close();
+    }
+}
+
+function cancelAppointment($id)
+{
+    $db = connect();
+    $sql = "DELETE FROM appointments WHERE id = $id";
+    try {
+        $db->query($sql);
+    } catch (Exception $error) {
+        echo "Error " . $sql . "<br>" . $db->error;
+    } finally {
+        $db->close();
+    }
+}
+
+function sendMessage($id, $message)
+{
+    $db = connect();
+    $createDate = date('Y-m-d');
+    $sql = "INSERT INTO messages(message, created_at, status, patient_id) VALUES ('$message', '$createDate', true, '$id')";
+    try {
+        $db->query($sql);
+    } catch (Exception $error) {
+        echo "Error " . $sql . "<br>" . $db->error;
+    } finally {
+        $db->close();
+    }
+}
+
 function deletePatient($id)
 {
     $db = connect();

@@ -1,10 +1,3 @@
-<?php
-session_start();
-if (!isset($_SESSION["patient"])) {
-    header("Location: ../login.php");
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,7 +25,7 @@ if (!isset($_SESSION["patient"])) {
         <?php include("../components/patientSidebar.php"); ?>
     </aside>
 
-    <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+    <main class="main-content position-relative border-radius-lg ">
         <!-- Navbar -->
         <nav class="navbar navbar-main navbar-expand-lg mx-5 px-0 shadow-none rounded" id="" navbar-scroll="true">
             <div class="container-fluid py-1 px-2">
@@ -60,7 +53,7 @@ if (!isset($_SESSION["patient"])) {
                             </a>
                         </li>
                         <li class="nav-item dropdown ps-2 d-flex align-items-center">
-                            <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false" title="<?php echo $_SESSION["name"]; ?>">
                                 <img src="../../assets/img/patient.png" class="avatar avatar-sm" alt="avatar" />
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
@@ -90,37 +83,63 @@ if (!isset($_SESSION["patient"])) {
                 <div class="col-md-12">
                     <div class="d-md-flex align-items-center mb-3 mx-2">
                         <div class="mb-md-0 mb-3">
-                            <h3 class="font-weight-bold mb-0">Hello, Noah</h3>
+                            <h3 class="font-weight-bold mb-0">Hello, <?php echo $_SESSION["name"] ?></h3>
                             <p class="mb-0">Welcome to Saafwan Dental & Ortho Dontics!</p>
                         </div>
-                        <button type="button" class="btn btn-primary btn-sm  btn-icon d-flex align-items-center mb-0 ms-md-auto mb-sm-0 mb-2 me-2">
-                            <span class="btn-inner--text">Meet Doctor</span>
-                        </button>
                     </div>
                 </div>
             </div>
             <hr class="my-0">
             <div class="container-fluid py-2">
-                <div class="row my-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-8">
-                                    <div class="numbers">
-                                        <p class="text-sm mb-0 text-uppercase font-weight-bold">Upcoming appointment on</p>
-                                        <h5 class="font-weight-bolder">
-                                            23-5-2023
+                <div class='row my-3'>
+                    <div class='card'>
+                        <div class='card-body'>
+                            <div class='row'>
+                                <div class='col-8'>
+                                    <div class='numbers'>
+                                        <p class='text-dark text-sm mb-0 font-weight-bold'>
+                                            <?php
+                                            if ($appointmentConfirm["name"] != "")
+                                                echo "Upcoming Appointment";
+                                            else if ($appointmentPending["name"] != "")
+                                                echo "Please wait for Doctor confirmation. Appointment Pending...";
+                                            else
+                                                echo "For set an appointment or meet with doctor, Click on <b class='text-lg'>Meet Doctor</b> button";
+                                            ?>
+                                        </p>
+                                        <h5 class='font-weight-bolder'>
+                                            <?php
+                                            if ($appointmentConfirm["name"] != "")
+                                                echo date('d-m-Y', strtotime($appointmentConfirm["appointment_at"]));
+                                            ?>
                                         </h5>
-                                        <p class="mb-0">
-                                            <span class="text-success text-sm font-weight-bolder">Kuril Bishwa Road, Dhaka, Bangladesh</span>
+                                        <p class='mb-0'>
+                                            <span class='text-success text-sm font-weight-bolder'>
+                                                <?php
+                                                if ($appointmentConfirm["name"] != "")
+                                                    echo $doc["chamber" . $appointmentConfirm["chamber"] . ""];
+                                                ?>
+                                            </span>
                                         </p>
                                     </div>
                                 </div>
-                                <div class="col-4 text-end">
-                                    <div class="shadow-primary text-center">
-                                        <button type="button" class="btn btn-danger btn-sm  btn-icon d-flex align-items-center ms-md-auto mb-2 mr-4 p-2">
-                                            <span class="btn-inner--text">Cancel</span>
-                                        </button>
+                                <div class='col-4 text-end'>
+                                    <div class='shadow-primary text-center'>
+                                        <?php
+                                        if ($appointmentPending["name"] != "") {
+                                            echo "
+                                                <a href='../../Controller/patient/appointmentCancelController.php?appointment=" . $appointmentPending['id'] . "' type='button' class='btn btn-danger btn-sm  btn-icon d-flex justify-content-center ms-md-auto mb-2 mr-4 p-2 w-lg-25 w-md-25'>
+                                                    <span class='btn-inner--text text-center'>Cancel</span>
+                                                </a>
+                                            ";
+                                        } else if ($appointmentPending["name"] == "" && $appointmentConfirm["name"] == "") {
+                                            echo "
+                                                <a type='button' href='../../Controller/patient/appointmentNowController.php?id=" . $_SESSION['id'] . "' class='btn btn-primary btn-sm  btn-icon d-flex justify-content-center ms-md-auto mb-2 mr-4 p-2 w-lg-25 w-md-25'>
+                                                    <span class='btn-inner--text'>Meet Doctor</span>
+                                                </a>
+                                            ";
+                                        }
+                                        ?>
                                     </div>
                                 </div>
                             </div>
@@ -134,31 +153,31 @@ if (!isset($_SESSION["patient"])) {
                                 <i class="fa fa-2x fa-location-arrow text-white" style="transform: rotate(15deg);"></i>
                             </div>
                             <a href="https://goo.gl/maps/UNbvXS7gSgkVrHSc9?coh=178571&entry=tt">
-                                <h6 class="mb-0">Kuril Bishwa Road, Dhaka, Bangladesh</h6>
+                                <h6 class="mb-0"><?php echo $doc["chamber1"]; ?></h6>
                             </a>
                             <div class="my-1" style="border: 0; width: 80%; height: 1px;background: #333; background-image: linear-gradient(to right, #ccc, #333, #ccc);"></div>
                             <a href="https://goo.gl/maps/F2NVNdZatgLU3zuz6?coh=178571&entry=tt">
-                                <h6 class="mb-0">529, Solmaid, Dhaka, Bangladesh</h6>
+                                <h6 class="mb-0"><?php echo $doc["chamber2"]; ?></h6>
                             </a>
                         </div>
                     </div>
                     <div class="col-lg-4">
-                        <a href="tel:+8801713-115050">
+                        <a href="tel:<?php echo $doc["phone"]; ?>">
                             <div class="bg-light rounded d-flex flex-column align-items-center justify-content-center text-center" style="height: 200px;">
                                 <div class="d-flex align-items-center justify-content-center bg-primary rounded-circle mb-4" style="width: 100px; height: 70px; transform: rotate(-15deg);">
                                     <i class="fa fa-2x fa-phone text-white" style="transform: rotate(15deg);"></i>
                                 </div>
-                                <h6 class="mb-0">+8801713-115050</h6>
+                                <h6 class="mb-0"><?php echo $doc["phone"]; ?></h6>
                             </div>
                         </a>
                     </div>
                     <div class="col-lg-4">
-                        <a href="mailto:fidaarham@gmail.com">
+                        <a href="mailto:<?php echo $doc["email"]; ?>">
                             <div class="bg-light rounded d-flex flex-column align-items-center justify-content-center text-center" style="height: 200px;">
                                 <div class="d-flex align-items-center justify-content-center bg-primary rounded-circle mb-4" style="width: 100px; height: 70px; transform: rotate(-15deg);">
                                     <i class="fa fa-2x fa-envelope-open text-white" style="transform: rotate(15deg);"></i>
                                 </div>
-                                <h6 class="mb-0">fidaarham@gmail.com</h6>
+                                <h6 class="mb-0"><?php echo $doc["email"]; ?></h6>
                             </div>
                         </a>
                     </div>
