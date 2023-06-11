@@ -19,6 +19,7 @@ if ($appointmentPending["name"] == "" && $appointmentConfirm["name"] == "") {
             $data = trim($data);
             $data = stripslashes($data);
             $data = htmlspecialchars($data);
+            $data = filter_var($data, FILTER_SANITIZE_ADD_SLASHES);
             return $data;
         }
         $id = test($_POST["id"]);
@@ -43,7 +44,7 @@ if ($appointmentPending["name"] == "" && $appointmentConfirm["name"] == "") {
                 sendMessage($id, $message);
 
             setcookie("error", "<div class='alert alert-success my-2' role='alert'><i class='fas fa-check'></i> Appointment request sent.</div>", time() + 1, "/");
-            header("location: ../../View/patient/appointment.php#app");
+            header("location: ../../View/patient/appointment.php");
         } else {
             setcookie("appointment", "<p class='text-xl text-danger mb-0'><i class='fas fa-exclamation-circle'></i> Invalid input</p>", time() + 1, "/");
             header("location: ../../View/patient/appointment.php#app");

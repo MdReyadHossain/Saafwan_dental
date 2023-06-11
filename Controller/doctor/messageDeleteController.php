@@ -10,6 +10,3 @@ if (isset($_GET['patient-id'])) {
     deleteAnonymousMessage($id);
     header("location: ../../View/doctor/messages.php");
 }
-?>
-
-<a href="../../View/doctor/messages.php"></a>

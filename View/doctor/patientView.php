@@ -168,7 +168,7 @@
                                                 </tr>
                                                 <tr>
                                                     <th>Registerd at: </th>
-                                                    <td><span class="text-secondary text-sm"><?php echo $user['created_at'] ?></span></td>
+                                                    <td><span class="text-secondary text-sm"><?php echo date('d-m-Y', strtotime($user['created_at'])) ?></span></td>
                                                 </tr>
                                                 <tr>
                                                     <th>Preferred Chamber: </th>

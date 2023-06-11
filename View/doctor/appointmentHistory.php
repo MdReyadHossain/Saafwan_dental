@@ -179,7 +179,7 @@ function chamber($chamber)
                                                         <span class='text-uppercase badge badge-sm bg-gradient-" . status($data['status']) . "'>" . $data['status'] . "</span>
                                                     </td>
                                                     <td class='align-middle text-center'>
-                                                        <p class='text-xs font-weight-bold mb-0'>" . $data['appointment_at'] . "</p>
+                                                        <p class='text-xs font-weight-bold mb-0'>" . date('d-m-Y', strtotime($data["appointment_at"])) . "</p>
                                                         <p class='text-xs text-secondary mb-0'>" . chamber($data['chamber']) . "</p>
                                                     </td>
                                                     <td class='align-middle'>

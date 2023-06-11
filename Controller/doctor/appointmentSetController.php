@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sql = "SELECT * FROM patients WHERE id = $patientId";
         $patient = $db->query($sql)->fetch_assoc();
         $email = $patient["email"];
-        $msg = "Dear " . $patient['name'] . ",<br>Your appointment has been set on $appointmentDate at <a href='$mapLink'>$chamberName</a>. Thank you so much.<br><br>Please don't hesitate to contact with us,<br>Saafwan Dental & Ortho Dontics<br>Email: " . $doc['email'] . "<br>Contact Number: " . $doc['phone'] . "";
+        $msg = "Dear " . $patient['name'] . ",<br>Your appointment has been set on " . date('d-m-Y', strtotime($appointmentDate)) . " at <a href='$mapLink'>$chamberName</a>. Thank you so much.<br><br>Please don't hesitate to contact with us,<br>Saafwan Dental & Ortho Dontics<br>Email: " . $doc['email'] . "<br>Contact Number: " . $doc['phone'] . "";
         smtp_mailer($email, "Appointment Confirmation", $msg);
 
         setcookie("app", "<p class='text-xl text-success mb-0'><i class='fas fa-check'></i> Appointment has been SET.</p>", time() + 1, "/");

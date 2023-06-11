@@ -79,10 +79,15 @@
         </nav>
         <!-- End Navbar -->
         <div class="container-fluid py-4 px-4">
-            <hr class="mb-5">
+            <hr class="mb-3">
+            <?php
+            if (isset($_COOKIE["msg"])) {
+                echo $_COOKIE["msg"];
+            }
+            ?>
             <div class="row my-4">
                 <div class="col-md-8">
-                    <form action="" method="POST">
+                    <form action="../../Controller/patient/contactMessageController.php" method="POST">
                         <div class="card">
                             <div class="card-header pb-0">
                                 <div class="d-flex align-items-center">
@@ -94,6 +99,7 @@
                                 <p class="text-uppercase text-sm">Tell us your Problem</p>
                                 <div class="row">
                                     <div class="col-md-12">
+                                        <input type="number" name="id" value="<?php echo $_SESSION["id"] ?>" hidden>
                                         <div class="form-group">
                                             <label for="example-text-input" class="form-control-label">Title</label>
                                             <input class="form-control" type="text" name="title">
@@ -102,7 +108,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="example-text-input" class="form-control-label">Message</label>
-                                            <textarea class="form-control" type="text" name="message" rows="5"></textarea>
+                                            <textarea class="form-control" type="text" name="message" rows="5" placeholder="Write the details about your problem" required></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -125,10 +131,10 @@
                         <div class="card-body pt-0">
                             <div class="text-center mt-4">
                                 <h5>
-                                    Dr. Fida Haque
+                                    <?php echo $doc["name"] ?>
                                 </h5>
                                 <div class="h6 font-weight-300">
-                                    <i class="ni location_pin mr-2"></i>fidaarham@gmail.com
+                                    <i class="ni location_pin mr-2"></i><?php echo $doc["email"] ?>
                                 </div>
                                 <div class="h6 mt-4">
                                     <i class="ni business_briefcase-24 mr-2"></i>Managing Director
@@ -147,32 +153,32 @@
                         <div class="d-flex align-items-center justify-content-center bg-primary rounded-circle mb-4" style="width: 100px; height: 70px; transform: rotate(-15deg);">
                             <i class="fa fa-2x fa-location-arrow text-white" style="transform: rotate(15deg);"></i>
                         </div>
-                        <a href="https://goo.gl/maps/UNbvXS7gSgkVrHSc9?coh=178571&entry=tt">
-                            <h6 class="mb-0">Kuril Bishwa Road, Dhaka, Bangladesh</h6>
+                        <a href="https://goo.gl/maps/F2NVNdZatgLU3zuz6?coh=178571&entry=tt">
+                            <h6 class="mb-0"><?php echo $doc["chamber1"] ?></h6>
                         </a>
                         <div class="my-1" style="border: 0; width: 80%; height: 1px;background: #333; background-image: linear-gradient(to right, #ccc, #333, #ccc);"></div>
-                        <a href="https://goo.gl/maps/F2NVNdZatgLU3zuz6?coh=178571&entry=tt">
-                            <h6 class="mb-0">529, Solmaid, Dhaka, Bangladesh</h6>
+                        <a href="https://goo.gl/maps/UNbvXS7gSgkVrHSc9?coh=178571&entry=tt">
+                            <h6 class="mb-0"><?php echo $doc["chamber2"] ?></h6>
                         </a>
                     </div>
                 </div>
                 <div class="col-lg-4">
-                    <a href="tel:+8801713-115050">
+                    <a href="tel:<?php echo $doc["phone"] ?>">
                         <div class="bg-light rounded d-flex flex-column align-items-center justify-content-center text-center" style="height: 200px;">
                             <div class="d-flex align-items-center justify-content-center bg-primary rounded-circle mb-4" style="width: 100px; height: 70px; transform: rotate(-15deg);">
                                 <i class="fa fa-2x fa-phone text-white" style="transform: rotate(15deg);"></i>
                             </div>
-                            <h6 class="mb-0">+8801713-115050</h6>
+                            <h6 class="mb-0"><?php echo $doc["phone"] ?></h6>
                         </div>
                     </a>
                 </div>
                 <div class="col-lg-4">
-                    <a href="mailto:fidaarham@gmail.com">
+                    <a href="mailto:<?php echo $doc["email"] ?>">
                         <div class="bg-light rounded d-flex flex-column align-items-center justify-content-center text-center" style="height: 200px;">
                             <div class="d-flex align-items-center justify-content-center bg-primary rounded-circle mb-4" style="width: 100px; height: 70px; transform: rotate(-15deg);">
                                 <i class="fa fa-2x fa-envelope-open text-white" style="transform: rotate(15deg);"></i>
                             </div>
-                            <h6 class="mb-0">fidaarham@gmail.com</h6>
+                            <h6 class="mb-0"><?php echo $doc["email"] ?></h6>
                         </div>
                     </a>
                 </div>

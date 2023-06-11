@@ -15,6 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $data = trim($data);
         $data = stripslashes($data);
         $data = htmlspecialchars($data);
+        $data = filter_var($data, FILTER_SANITIZE_ADD_SLASHES);
         return $data;
     }
 

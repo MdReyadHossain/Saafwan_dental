@@ -160,7 +160,7 @@ function message($msg)
                                                         <a href='tel:" . $data['phone'] . "' class='text-xs text-secondary font-weight-bold mb-0'>" . $data['phone'] . "</a>
                                                     </td>
                                                     <td class='align-middle text-center'>
-                                                        <span class='text-secondary text-xs font-weight-bold'><p class='text-xs font-weight-bold mb-0'>" . $data['created_at'] . "</p></span>
+                                                        <span class='text-secondary text-xs font-weight-bold'><p class='text-xs font-weight-bold mb-0'>" . date('d-m-Y', strtotime($data['created_at'])) . "</p></span>
                                                     </td>
                                                     <td style='text-align: center;'>
                                                         <a href='messageView.php?patient-id=" . $data['id'] . "' class='btn btn-primary font-weight-bold text-xs'>
@@ -193,7 +193,7 @@ function message($msg)
                                                         <a href='tel:" . $data['phone'] . "' class='text-secondary text-xs font-weight-bold mb-0'>" . $data['phone'] . "</a>
                                                     </td>
                                                     <td class='align-middle text-center'>
-                                                        <span class='text-secondary text-xs font-weight-bold'><p class='text-xs font-weight-bold mb-0'>" . $data['created_at'] . "</p></span>
+                                                        <span class='text-secondary text-xs font-weight-bold'><p class='text-xs font-weight-bold mb-0'>" . date('d-m-Y', strtotime($data['created_at'])) . "</p></span>
                                                     </td>
                                                     <td style='text-align: center;'>
                                                         <a href='messageView.php?anonymous-id=" . $data['id'] . "' class='btn btn-primary font-weight-bold text-xs'>
