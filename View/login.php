@@ -38,6 +38,7 @@ else if (isset($_SESSION["patient"]))
                 </div>
                 <button type="submit" class="submit-btn">Login</button>
             </form>
+            <a href="forgetPassword.php" style="color: white;">Forget Password</a>
             <?php
             if (isset($_COOKIE["reg"]))
                 echo $_COOKIE["reg"];

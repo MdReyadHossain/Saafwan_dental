@@ -318,9 +318,8 @@
                                     Special Trained in Implant <br>
                             </div>
                             <div class="d-flex mt-auto border-top p-4">
-                                <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-3" href="#"><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-3" href="#"><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-lg btn-primary btn-lg-square rounded-circle" href="#"><i class="fab fa-linkedin-in"></i></a>
+                                <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-3" href="https://www.facebook.com/SaafwanDentalClinic"><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-lg btn-primary btn-lg-square rounded-circle" href="https://www.youtube.com/@saafwandental8071"><i class="fab fa-youtube"></i></a>
                             </div>
                         </div>
                     </div>

@@ -62,6 +62,22 @@ function sendMessage($id, $message)
     }
 }
 
+function updateProfile($id, $name, $email, $phone, $age, $gender, $chamber)
+{
+    $db = connect();
+    $sql = "UPDATE patients SET name = '$name', email = '$email', phone = '$phone', age = '$age', gender = '$gender', default_chamber = '$chamber' WHERE id = $id";
+    try {
+        if ($db->query($sql)) {
+            $sql = "UPDATE users SET name = '$name', email = '$email', phone = '$phone', age = '$age', gender = '$gender' WHERE patient_id = $id";
+            $db->query($sql);
+        }
+    } catch (Exception $error) {
+        echo "Error " . $sql . "<br>" . $db->error;
+    } finally {
+        $db->close();
+    }
+}
+
 function deletePatient($id)
 {
     $db = connect();

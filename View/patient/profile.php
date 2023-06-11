@@ -1,3 +1,28 @@
+<?php
+function isMale($gender)
+{
+    if ($gender == "Male")
+        return "selected";
+}
+
+function isFemale($gender)
+{
+    if ($gender == "Female")
+        return "selected";
+}
+
+function isChamber1($chamber)
+{
+    if ($chamber == "1")
+        return "selected";
+}
+function isChamber2($chamber)
+{
+    if ($chamber == "2")
+        return "selected";
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -80,9 +105,13 @@
         <!-- End Navbar -->
         <div class="container-fluid py-4 px-4">
             <hr class="my-0">
+            <?php
+            if (isset($_COOKIE["profile"]))
+                echo $_COOKIE["profile"];
+            ?>
             <div class="row my-4">
                 <div class="col-md-8">
-                    <form action="" method="POST">
+                    <form action="../../Controller/patient/updateProfileController.php" method="POST">
                         <div class="card">
                             <div class="card-header pb-0">
                                 <div class="d-flex align-items-center">
@@ -95,22 +124,23 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
+                                            <input type="number" name="id" value="<?php echo $_SESSION["id"] ?>" hidden>
                                             <label for="example-text-input" class="form-control-label">Name</label>
-                                            <input class="form-control" type="text" value="Dr. Fida Haque">
+                                            <input class="form-control" type="text" name="name" value="<?php echo $_SESSION["name"] ?>">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="example-text-input" class="form-control-label">Age</label>
-                                            <input class="form-control" type="text" value="Kuril Bishwa Road, Dhaka, Bangladesh">
+                                            <input class="form-control" type="text" name="age" value="<?php echo $_SESSION["age"] ?>">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="example-text-input" class="form-control-label">Gender</label>
                                             <select class="form-control" name="gender">
-                                                <option value="Male">Male</option>
-                                                <option value="Female">Female</option>
+                                                <option value="Male" <?php echo isMale($_SESSION['gender']) ?>>Male</option>
+                                                <option value="Female" <?php echo isFemale($_SESSION['gender']) ?>>Female</option>
                                             </select>
                                         </div>
                                     </div>
@@ -121,13 +151,26 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="example-text-input" class="form-control-label">Email address</label>
-                                            <input class="form-control" type="email" value="fidaarham@gmail.com">
+                                            <input class="form-control" type="email" name="email" value="<?php echo $_SESSION["email"] ?>">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="example-text-input" class="form-control-label">Phone Number</label>
-                                            <input class="form-control" type="text" value="+8801713-115050">
+                                            <input class="form-control" type="text" name="phone" value="<?php echo $_SESSION["phone"] ?>">
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="horizontal dark">
+                                <p class="text-uppercase text-sm">Chamber</p>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="example-text-input" class="form-control-label">Preferred Chamber</label>
+                                            <select class="form-control" name="chamber">
+                                                <option value="1" <?php echo isChamber1($_SESSION['default_chamber']) ?>><?php echo $doc["chamber1"] ?></option>
+                                                <option value="2" <?php echo isChamber2($_SESSION['default_chamber']) ?>><?php echo $doc["chamber2"] ?></option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -150,13 +193,13 @@
                         <div class="card-body pt-0">
                             <div class="text-center mt-4">
                                 <h5>
-                                    Dr. Fida Haque
+                                    <?php echo $_SESSION["name"] ?>
                                 </h5>
                                 <div class="h6 font-weight-300">
-                                    <i class="ni location_pin mr-2"></i>fidaarham@gmail.com
+                                    <i class="ni location_pin mr-2"></i><?php echo $_SESSION["email"] ?>
                                 </div>
                                 <div class="h6 mt-4">
-                                    <i class="ni business_briefcase-24 mr-2"></i>Managing Director
+                                    <i class="ni business_briefcase-24 mr-2"></i><?php echo $_SESSION["phone"] ?>
                                 </div>
                                 <div>
                                     <i class="ni education_hat mr-2"></i>Saafwan Dental & Ortho Dontics

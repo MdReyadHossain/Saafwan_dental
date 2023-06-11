@@ -4,7 +4,7 @@ session_start();
 
 $id = $name = $email = $phone = $chamber1 = $chamber2 = "";
 $isValid = true;
-$phoneReg = '/^(\+?880|0)1[3456789]\d{8}$/';
+$phoneReg = '/^(0)1[3456789]\d{8}$/';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     function test($data)

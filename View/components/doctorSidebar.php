@@ -1,5 +1,6 @@
 <?php
 require "../../Model/dbConnect.php";
+include("../appointmentDone.php");
 session_start();
 if (!isset($_SESSION["doc"])) {
     header("Location: ../login.php");
