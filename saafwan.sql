@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 10, 2023 at 11:31 PM
+-- Generation Time: Jun 11, 2023 at 10:30 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.2
 
@@ -77,10 +77,11 @@ CREATE TABLE `appointments` (
 INSERT INTO `appointments` (`id`, `user`, `chamber`, `appointment_at`, `created_at`, `cancel_at`, `status`, `patient_id`) VALUES
 (2, 'patient', 2, '2023-06-07', '2023-06-07', NULL, 'pending', 22),
 (3, 'doctor', 2, '2023-06-09', '2023-06-08', NULL, 'done', 20),
-(4, 'doctor', 1, '2023-06-09', '2023-06-08', NULL, 'pending', 21),
+(4, 'doctor', 1, '2023-06-09', '2023-06-08', NULL, 'done', 21),
 (6, 'doctor', 1, '2023-06-12', '2023-06-10', NULL, 'cancel', 20),
 (8, 'doctor', 1, '2023-06-10', '2023-06-10', NULL, 'cancel', 20),
-(17, 'doctor', 1, '2023-06-10', '2023-06-10', NULL, 'cancel', 20);
+(17, 'doctor', 1, '2023-06-10', '2023-06-10', NULL, 'cancel', 20),
+(20, 'doctor', 1, '2023-06-10', '2023-06-11', NULL, 'pending', 20);
 
 -- --------------------------------------------------------
 
@@ -126,7 +127,8 @@ CREATE TABLE `messages` (
 --
 
 INSERT INTO `messages` (`id`, `message`, `created_at`, `patient_id`, `status`) VALUES
-(1, 'Hello Doc, I need your help.Hello Doc, I need your help.Hello Doc, I need your help.Hello Doc, I need your help.Hello Doc, I need your help.', '2023-06-08', 20, 1);
+(1, 'Hello Doc, I need your help.Hello Doc, I need your help.Hello Doc, I need your help.Hello Doc, I need your help.Hello Doc, I need your help.', '2023-06-08', 20, 1),
+(7, 'no way how is it possible', '2023-06-11', 20, 1);
 
 -- --------------------------------------------------------
 
@@ -246,7 +248,7 @@ ALTER TABLE `anonymous`
 -- AUTO_INCREMENT for table `appointments`
 --
 ALTER TABLE `appointments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `doctors`
@@ -258,7 +260,7 @@ ALTER TABLE `doctors`
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `patients`
