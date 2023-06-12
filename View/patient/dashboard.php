@@ -152,11 +152,11 @@
                             <div class="d-flex align-items-center justify-content-center bg-primary rounded-circle mb-4" style="width: 100px; height: 70px; transform: rotate(-15deg);">
                                 <i class="fa fa-2x fa-location-arrow text-white" style="transform: rotate(15deg);"></i>
                             </div>
-                            <a href="https://goo.gl/maps/UNbvXS7gSgkVrHSc9?coh=178571&entry=tt">
+                            <a href="https://goo.gl/maps/F2NVNdZatgLU3zuz6?coh=178571&entry=tt">
                                 <h6 class="mb-0"><?php echo $doc["chamber1"]; ?></h6>
                             </a>
                             <div class="my-1" style="border: 0; width: 80%; height: 1px;background: #333; background-image: linear-gradient(to right, #ccc, #333, #ccc);"></div>
-                            <a href="https://goo.gl/maps/F2NVNdZatgLU3zuz6?coh=178571&entry=tt">
+                            <a href="https://goo.gl/maps/UNbvXS7gSgkVrHSc9?coh=178571&entry=tt">
                                 <h6 class="mb-0"><?php echo $doc["chamber2"]; ?></h6>
                             </a>
                         </div>

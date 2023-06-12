@@ -30,7 +30,7 @@
                         <form action="../Controller/forgetPasswordController.php" method="POST">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="example-text-input" class="form-control-label">Password will sent to your Email, write your Phone number</label>
+                                    <label for="example-text-input" class="form-control-label">Password will sent to your Email, Type your Phone number</label>
                                     <input type="text" name="phone" class="form-control" placeholder="Phone Number">
                                 </div>
                             </div>

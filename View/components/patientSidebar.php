@@ -6,6 +6,9 @@ if (!isset($_SESSION["patient"])) {
     header("Location: ../login.php");
 }
 
+if (!isset($_COOKIE["isLogin"]))
+    header("Location: ../logout.php");
+
 $db = connect();
 $doc = $db->query("SELECT * FROM doctors WHERE id = 1")->fetch_assoc();
 

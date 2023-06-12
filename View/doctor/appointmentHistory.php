@@ -87,7 +87,7 @@ function chamber($chamber)
                                             </div>
                                             <div class="d-flex flex-column justify-content-center">
                                                 <h6 class="text-sm font-weight-normal">
-                                                    <span class="font-weight-bold">Log out</span>
+                                                    <span class="text-dark font-weight-bold">Log out</span>
                                                 </h6>
                                             </div>
                                         </div>

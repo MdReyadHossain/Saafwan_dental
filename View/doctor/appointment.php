@@ -74,7 +74,7 @@ function chamber2($chamber)
                             <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                                 <img src="../../assets/img/profile.jpg" class="avatar avatar-sm" alt="avatar" />
                             </a>
-                            <ul class="dropdown-menu dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
+                            <ul class="dropdown-menu dropdown-menu-end px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
                                 <li class="">
                                     <a class="dropdown-item border-radius-md" href="../logout.php">
                                         <div class="d-flex">
@@ -83,7 +83,7 @@ function chamber2($chamber)
                                             </div>
                                             <div class="d-flex flex-column justify-content-center">
                                                 <h6 class="text-sm font-weight-normal">
-                                                    <span class="font-weight-bold">Log out</span>
+                                                    <span class="text-dark font-weight-bold">Log out</span>
                                                 </h6>
                                             </div>
                                         </div>

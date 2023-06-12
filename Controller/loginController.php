@@ -54,6 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $_SESSION["gender"] = $patient["gender"];
                     $_SESSION["default_chamber"] = $patient["default_chamber"];
                     $_SESSION["created_at"] = $patient["created_at"];
+                    setcookie("isLogin", "Login Done!", time() + (60 * 60 * 24), "/");
                     header("location: ../View/patient/dashboard.php");
                     $isPatient = true;
                     $isValid = true;
