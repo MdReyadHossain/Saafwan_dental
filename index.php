@@ -40,7 +40,7 @@
         <div class="container">
             <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0">
                 <a href="" class="navbar-brand">
-                    <img src="./Assets/img/saafwanLogo.png" alt="saafwan" width="250">
+                    <img src="./Assets/img/saafwanLogo.png" alt="saafwan" width="200">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
@@ -48,9 +48,9 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0">
                         <a href="index.html" class="nav-item nav-link active">Home</a>
-                        <a href="./view/about.php" class="nav-item nav-link">About</a>
-                        <a href="./view/contact.php" class="nav-item nav-link">Contact</a>
-                        <a href="./view/login.php" class="nav-item nav-link">Login</a>
+                        <a href="./View/about.php" class="nav-item nav-link">About</a>
+                        <a href="./View/contact.php" class="nav-item nav-link">Contact</a>
+                        <a href="./View/login.php" class="nav-item nav-link">Login</a>
                     </div>
                 </div>
             </nav>

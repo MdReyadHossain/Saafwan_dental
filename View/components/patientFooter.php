@@ -20,7 +20,7 @@
                         <a href="../../#blog" class="nav-link text-xs text-muted">Blog</a>
                     </li>
                     <li class="nav-item">
-                        <a href="https://www.creative-tim.com/license" class="nav-link text-xs pe-0 text-muted">Home</a>
+                        <a href="../../" class="nav-link text-xs pe-0 text-muted">Home</a>
                     </li>
                 </ul>
             </div>

@@ -6,7 +6,7 @@ function patientRegistration($name, $email, $phone, $password, $gender, $age)
     $db = connect();
     $createdat = date('Y-m-d');
 
-    $sql = "INSERT INTO patients(name, email, phone, password, gender, age, created_at, status) VALUES ('$name', '$email', '$phone', '$password', '$gender', '$age', '$createdat', true)";
+    $sql = "INSERT INTO patients(name, email, phone, password, gender, age, default_chamber, created_at, status) VALUES ('$name', '$email', '$phone', '$password', '$gender', '$age', '1', '$createdat', true)";
     if ($db->query($sql)) {
         $userSql = "SELECT * FROM patients WHERE phone = $phone";
         $user = $db->query($userSql)->fetch_assoc();

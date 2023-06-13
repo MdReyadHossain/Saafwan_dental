@@ -14,8 +14,8 @@ else if (isset($_SESSION["patient"]))
     <meta charset="UTF-8">
     <title>Saafwan Dental & Ortho Dontics</title>
     <link href="https://fonts.googleapis.com/css?family=Asap" rel="stylesheet">
-    <link rel="stylesheet" href="../Assets/css/login.scss">
-    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+    <link rel="stylesheet" href="../Assets/css/login.css">
+    <link rel="icon" type="image/png" href="../Assets/img/favicon.png">
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">

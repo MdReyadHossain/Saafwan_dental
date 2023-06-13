@@ -21,10 +21,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $chamber = test($_POST["chamber"]);
     if ($chamber == "1") {
         $chamberName = $doc["chamber1"];
-        $mapLink = "https://goo.gl/maps/UNbvXS7gSgkVrHSc9?coh=178571&entry=tt";
+        $mapLink = "https://goo.gl/maps/F2NVNdZatgLU3zuz6?coh=178571&entry=tt";
     } else if ($chamber == "2") {
         $chamberName = $doc["chamber2"];
-        $mapLink = "https://goo.gl/maps/F2NVNdZatgLU3zuz6?coh=178571&entry=tt";
+        $mapLink = "https://goo.gl/maps/UNbvXS7gSgkVrHSc9?coh=178571&entry=tt";
     }
 
     if (empty($appointmentDate) || $id == "" || $chamber == "")

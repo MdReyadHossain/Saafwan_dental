@@ -28,20 +28,20 @@ function status($status)
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
+    <link rel="icon" type="image/png" href="../../Assets/img/favicon.png">
     <title>
         Patient Panel
     </title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
     <!-- Nucleo Icons -->
-    <link href="../../assets/css/nucleo-icons.css" rel="stylesheet" />
-    <link href="../../assets/css/nucleo-svg.css" rel="stylesheet" />
+    <link href="../../Assets/css/nucleo-icons.css" rel="stylesheet" />
+    <link href="../../Assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-    <link href="../../assets/css/nucleo-svg.css" rel="stylesheet" />
+    <link href="../../Assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- CSS Files -->
-    <link id="pagestyle" href="../../assets/css/corporate-ui-dashboard.css?v=1.0.0" rel="stylesheet" />
+    <link id="pagestyle" href="../../Assets/css/corporate-ui-dashboard.css?v=1.0.0" rel="stylesheet" />
 </head>
 
 <body class="g-sidenav-show bg-gray-100">
@@ -70,15 +70,13 @@ function status($status)
                         <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
                             <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
                                 <div class="sidenav-toggler-inner">
-                                    <i class="sidenav-toggler-line"></i>
-                                    <i class="sidenav-toggler-line"></i>
-                                    <i class="sidenav-toggler-line"></i>
+                                    <i class="sidenav-toggler-line">>></i>
                                 </div>
                             </a>
                         </li>
                         <li class="nav-item dropdown ps-2 d-flex align-items-center">
                             <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="../../assets/img/patient.png" class="avatar avatar-sm" alt="avatar" title="<?php echo $_SESSION["name"]; ?>" />
+                                <img src="../../Assets/img/patient.png" class="avatar avatar-sm" alt="avatar" title="<?php echo $_SESSION["name"]; ?>" />
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
                                 <li class="">
@@ -201,11 +199,11 @@ function status($status)
         </div>
     </div>
     <!--   Core JS Files   -->
-    <script src="../../assets/js/core/popper.min.js"></script>
-    <script src="../../assets/js/core/bootstrap.min.js"></script>
-    <script src="../../assets/js/plugins/perfect-scrollbar.min.js"></script>
-    <script src="../../assets/js/plugins/smooth-scrollbar.min.js"></script>
-    <script src="../../assets/js/plugins/chartjs.min.js"></script>
+    <script src="../../Assets/js/core/popper.min.js"></script>
+    <script src="../../Assets/js/core/bootstrap.min.js"></script>
+    <script src="../../Assets/js/plugins/perfect-scrollbar.min.js"></script>
+    <script src="../../Assets/js/plugins/smooth-scrollbar.min.js"></script>
+    <script src="../../Assets/js/plugins/chartjs.min.js"></script>
     <script>
         var win = navigator.platform.indexOf('Win') > -1;
         if (win && document.querySelector('#sidenav-scrollbar')) {
@@ -218,7 +216,7 @@ function status($status)
     <!-- Github buttons -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="../../assets/js/argon-dashboard.min.js?v=2.0.4"></script>
+    <script src="../../Assets/js/argon-dashboard.min.js?v=2.0.4"></script>
 </body>
 
 </html>

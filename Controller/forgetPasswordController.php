@@ -35,6 +35,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $patientmail = substr($parts[0], 0, 2) . str_repeat('*', strlen($parts[0])) . '@' . $parts[1];
             setcookie("pass", "<div class='alert alert-success my-2' role='alert'><i class='fas fa-check'></i> Email has sent to your email <b>" . $patientmail . "</b> Go to <a href='login.php' class='font-weight-bold'>Login</a></div>", time() + 1, "/");
             header("location: ../View/forgetPassword.php");
+        } else if ($phone == $doc["phone"]) {
+            $msg = "You are request to know your password, You should use this password to login to your portal.<br><h2>" . $doc['password'] . "</h2><br>Keep it on your mind, Don't share your password with anyone.<br><br>Saafwan Dental & Ortho Dontics";
+            smtp_mailer($doc["email"], "Forget Password", $msg);
+
+            $parts = explode('@', $doc["email"]);
+            $patientmail = substr($parts[0], 0, 2) . str_repeat('*', strlen($parts[0])) . '@' . $parts[1];
+            setcookie("pass", "<div class='alert alert-success my-2' role='alert'><i class='fas fa-check'></i> Email has sent to your email <b>" . $patientmail . "</b> Go to <a href='login.php' class='font-weight-bold'>Login</a></div>", time() + 1, "/");
+            header("location: ../View/forgetPassword.php");
         } else {
             setcookie("pass", "<div class='alert alert-danger my-2' role='alert'><i class='fas fa-exclamation-circle'></i> Phone number not registered, Go to <a href='login.php' class='font-weight-bold'>registration</a></div>", time() + 1, "/");
             header("location: ../View/forgetPassword.php");

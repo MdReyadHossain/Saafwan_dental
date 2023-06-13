@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
-    <link id="pagestyle" href="../assets/css/corporate-ui-dashboard.css?v=1.0.0" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="../Assets/img/favicon.png">
+    <link id="pagestyle" href="../Assets/css/corporate-ui-dashboard.css?v=1.0.0" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     <title>Saafwan Dental & Ortho Dontics</title>

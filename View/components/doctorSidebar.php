@@ -25,7 +25,7 @@ $appointmentLog = $db->query("SELECT patients.*, appointments.* FROM appointment
         <table>
             <tr>
                 <td>
-                    <img src="../../assets/img/favicon.png" class="navbar-brand-img" alt="main_logo">
+                    <img src="../../Assets/img/favicon.png" class="navbar-brand-img" alt="main_logo">
                 </td>
                 <td>
                     <span class="ms-1 font-weight-bold">Saafwan Dental</span><br>

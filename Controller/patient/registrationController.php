@@ -47,6 +47,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         die();
     }
 
+    if ($phone == $doc["phone"]) {
+        $isValid = false;
+        setcookie("reg", "<p class='alert alert-danger' role='alert' style='color: red; font-weight: bold; padding: 10px; background-color: khaki; border: 1px solid brown; border-radius: 5px; font-size: 12px'><i class='fas fa-exclamation-circle'></i> This phone number cannot be used!</p>", time() + 1, "/");
+        header("location: ../../View/login.php");
+        die();
+    }
+
     if ($user["name"] != "") {
         $isValid = false;
         setcookie("reg", "<p class='alert alert-danger' role='alert' style='color: red; font-weight: bold; padding: 10px; background-color: khaki; border: 1px solid brown; border-radius: 5px; font-size: 12px'><i class='fas fa-exclamation-circle'></i> This Phone or Email already registered.</p>", time() + 1, "/");

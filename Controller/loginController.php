@@ -72,11 +72,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
         if (!$isValid) {
-            setcookie("reg", "<span class='alert alert-danger' role='alert' style='color: red; font-weight: bold; padding: 10px; background-color: khaki; border: 1px solid brown; border-radius: 5px; font-size: 12px'><i class='fas fa-exclamation-circle'></i> Phone no or Password incorrect.</span>", time() + 1, "/");
+            setcookie("reg", "<p class='alert alert-danger' role='alert' style='color: red; font-weight: bold; padding: 10px; background-color: khaki; border: 1px solid brown; border-radius: 5px; font-size: 12px'><i class='fas fa-exclamation-circle'></i> Phone no or Password incorrect.</p>", time() + 1, "/");
             header("location: ../View/login.php");
         }
     } else {
-        setcookie("reg", "<span class='alert alert-danger' role='alert' style='color: red; font-weight: bold; padding: 10px; background-color: khaki; border: 1px solid brown; border-radius: 5px; font-size: 12px'><i class='fas fa-exclamation-circle'></i> Input all field(s).</span>", time() + 1, "/");
+        setcookie("reg", "<p class='alert alert-danger' role='alert' style='color: red; font-weight: bold; padding: 10px; background-color: khaki; border: 1px solid brown; border-radius: 5px; font-size: 12px'><i class='fas fa-exclamation-circle'></i> Input all field(s).</p>", time() + 1, "/");
         header("location: ../View/login.php");
     }
 }
