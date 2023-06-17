@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 Not Found - Dental Clinic</title>
+    <link href="../Assets/img/favicon.png" rel="icon">
+    <title>404 Not Found</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -43,12 +44,12 @@
 
 <body>
     <div class="container">
-        <a href="../../" class="navbar-brand">
-            <img src="../../Assets/img/saafwanLogo.png" alt="saafwan" width="200">
+        <a href="../" class="navbar-brand">
+            <img src="../Assets/img/saafwanLogo.png" alt="saafwan" width="200">
         </a>
         <h1>Oops! 404 Not Found</h1>
         <p>The page you are looking for does not exist.</p>
-        <p>Return to the <a href="../../">homepage</a> or contact our <a href="http://reyad.ezyro.com/">support team</a> for assistance.</p>
+        <p>Return to the <a href="../">homepage</a> or contact our <a href="http://reyad.ezyro.com/">support team</a> for assistance.</p>
     </div>
 </body>
 

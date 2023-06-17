@@ -53,7 +53,7 @@
     <div class="container">
         <div class="row g-5">
             <div class="col-md-6 text-center text-md-start">
-                <p class="mb-md-0">&copy; <a class="text-primary" href="#">Saafwan Dental</a> All Rights Reserved.</p>
+                <p class="mb-md-0">&copy; <a class="text-primary" href="#">Saafwan Dental</a> All Rights Reserved</p>
             </div>
             <div class="col-md-6 text-center text-md-end">
                 <p class="mb-0">Complete Family Dentistry</p>
