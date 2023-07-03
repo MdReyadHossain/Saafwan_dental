@@ -84,6 +84,7 @@
                             <h3 class="font-weight-bold mb-0">Hello, <?php echo $_SESSION["name"] ?></h3>
                             <p class="mb-0">Welcome to Saafwan Dental & Ortho Dontics!</p>
                         </div>
+                        <div class="ms-auto">Patient ID: <?php echo $_SESSION["id"] ?></div>
                     </div>
                 </div>
             </div>

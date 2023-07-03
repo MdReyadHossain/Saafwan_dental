@@ -42,6 +42,7 @@ function chamber($chamber)
     <link href="../../Assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- CSS Files -->
     <link id="pagestyle" href="../../Assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js" integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body class="g-sidenav-show   bg-gray-100">
@@ -137,13 +138,22 @@ function chamber($chamber)
                 <div class="col-lg-12 col-md-6 mb-4">
                     <div class="card mb-4">
                         <div class="card-header pb-0">
-                            <h6>Appointment Log</h6>
+                            <form action="../../Controller/doctor/searchAppointment.php" method="GET" onsubmit="searchAppointment(this); return false;">
+                                <div class="d-flex align-items-center">
+                                    <h6 class="m-1">Appointment Log</h6>
+                                    <input type="text" class="form-control w-lg-25 ms-auto text-xxs font-weight-bolder" id="search" name="search" placeholder="Search" aria-describedby="basic-addon2">
+                                    <div class="input-group-append">
+                                        <button class="input-group-text" id="basic-addon2" type="submit"><i class="fas fa-search p-1"></i></button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                         <div class="card-body px-0 pt-0 pb-2" style="height: 50vh; overflow-y: scroll;">
-                            <div class="table-responsive p-0">
+                            <div class="table-responsive p-0" id="patient">
                                 <table class="table align-items-center mb-0">
                                     <thead>
                                         <tr>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Patient ID</th>
                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Patient Name</th>
                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Phone Number</th>
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Age/Gender</th>
@@ -157,35 +167,38 @@ function chamber($chamber)
                                         if ($appointmentLog->num_rows > 0) {
                                             while ($data = $appointmentLog->fetch_assoc()) {
                                                 echo "
-                                                <tr>
-                                                    <td>
-                                                        <div class='d-flex px-2 py-1'>
-                                                            <div class='d-flex flex-column justify-content-center'>
-                                                                <h6 class='mb-0 text-sm'>" . $data['name'] . "</h6>
-                                                                <a href='mailto:" . $data['email'] . "' class='text-xs text-secondary mb-0'>" . $data['email'] . "</a>
+                                                    <tr>
+                                                        <td class='align-middle text-center text-sm'>
+                                                            <a class='text-secondary text-xs font-weight-bold mb-0'>" . $data['patient_id'] . "</a>
+                                                        </td>
+                                                        <td>
+                                                            <div class='d-flex px-2 py-1'>
+                                                                <div class='d-flex flex-column justify-content-center'>
+                                                                    <h6 class='mb-0 text-sm'>" . $data['name'] . "</h6>
+                                                                    <a href='mailto:" . $data['email'] . "' class='text-xs text-secondary mb-0'>" . $data['email'] . "</a>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <a href='tel:" . $data['phone'] . "' class='text-secondary text-xs font-weight-bold mb-0'>" . $data['phone'] . "</a>
-                                                    </td>
-                                                    <td class='align-middle text-center text-sm'>
-                                                        <p class='text-xs font-weight-bold mb-0'>" . $data['age'] . "</p>
-                                                        <p class='text-xs text-secondary mb-0'>" . $data['gender'] . "</p>
-                                                    </td>
-                                                    <td class='align-middle text-center text-sm'>
-                                                        <span class='text-uppercase badge badge-sm bg-gradient-" . status($data['status']) . "'>" . $data['status'] . "</span>
-                                                    </td>
-                                                    <td class='align-middle text-center'>
-                                                        <p class='text-xs font-weight-bold mb-0'>" . date('d-m-Y', strtotime($data["appointment_at"])) . "</p>
-                                                        <p class='text-xs text-secondary mb-0'>" . chamber($data['chamber']) . "</p>
-                                                    </td>
-                                                    <td class='align-middle'>
-                                                        <a href='../../Controller/doctor/appointmentDeleteController.php?id=" . $data['id'] . "' class='btn btn-danger font-weight-bold text-xs'>
-                                                            Delete
-                                                        </a>
-                                                    </td>
-                                                </tr>
+                                                        </td>
+                                                        <td>
+                                                            <a href='tel:" . $data['phone'] . "' class='text-secondary text-xs font-weight-bold mb-0'>" . $data['phone'] . "</a>
+                                                        </td>
+                                                        <td class='align-middle text-center text-sm'>
+                                                            <p class='text-xs font-weight-bold mb-0'>" . $data['age'] . "</p>
+                                                            <p class='text-xs text-secondary mb-0'>" . $data['gender'] . "</p>
+                                                        </td>
+                                                        <td class='align-middle text-center text-sm'>
+                                                            <span class='text-uppercase badge badge-sm bg-gradient-" . status($data['status']) . "'>" . $data['status'] . "</span>
+                                                        </td>
+                                                        <td class='align-middle text-center'>
+                                                            <p class='text-xs font-weight-bold mb-0'>" . date('d-m-Y', strtotime($data["appointment_at"])) . "</p>
+                                                            <p class='text-xs text-secondary mb-0'>" . chamber($data['chamber']) . "</p>
+                                                        </td>
+                                                        <td class='align-middle'>
+                                                            <a href='../../Controller/doctor/appointmentDeleteController.php?id=" . $data['id'] . "' class='btn btn-danger font-weight-bold text-xs'>
+                                                                Delete
+                                                            </a>
+                                                        </td>
+                                                    </tr>
                                                 ";
                                             }
                                         }
@@ -277,6 +290,23 @@ function chamber($chamber)
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="../../Assets/js/argon-dashboard.min.js?v=2.0.4"></script>
+    <script>
+        function searchAppointment(form) {
+            const url = form.action;
+            const key = form.search.value;
+
+            if (key != "") {
+                axios.get(url + "?patient=" + key)
+                    .then((response) => {
+                        console.log(response);
+                        document.getElementById("patient").innerHTML = response.data;
+                    })
+                    .catch((error) => console.log("Error: " + error));
+            } else {
+                document.location.href = "appointmentHistory.php";
+            }
+        }
+    </script>
 </body>
 
 </html>

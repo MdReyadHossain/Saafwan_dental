@@ -190,14 +190,17 @@ function isChamber2($chamber)
                         </div>
                         <div class="card-body pt-0">
                             <div class="text-center mt-4">
+                                <div class="mt-4">
+                                    Patient ID: <?php echo $_SESSION["id"] ?>
+                                </div>
                                 <h5>
                                     <?php echo $_SESSION["name"] ?>
                                 </h5>
                                 <div class="h6 font-weight-300">
-                                    <i class="ni location_pin mr-2"></i><?php echo $_SESSION["email"] ?>
+                                    <i class="fas fa-envelope"></i> <?php echo $_SESSION["email"] ?>
                                 </div>
                                 <div class="h6 mt-4">
-                                    <i class="ni business_briefcase-24 mr-2"></i><?php echo $_SESSION["phone"] ?>
+                                    <i class="fas fa-phone"></i> <?php echo $_SESSION["phone"] ?>
                                 </div>
                                 <div>
                                     <i class="ni education_hat mr-2"></i>Saafwan Dental & Ortho Dontics

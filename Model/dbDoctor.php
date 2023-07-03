@@ -1,6 +1,82 @@
 <?php
 require "dbConnect.php";
 
+function searchMessageAnonymous($key)
+{
+    $db = connect();
+
+    $sql = "SELECT * FROM anonymous WHERE status = true AND (name LIKE ? OR phone LIKE ?) ORDER BY id DESC";
+    $stmt = $db->prepare($sql);
+    $search = $key;
+    $search = "%" . $search . "%";
+    $stmt->bind_param("ss", $search, $search);
+
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $stmt->close();
+    $db->close();
+
+    return $result;
+}
+
+function searchMessagePatient($key)
+{
+    $db = connect();
+
+    $sql = "SELECT patients.*, messages.* FROM messages INNER JOIN patients ON messages.patient_id = patients.id WHERE messages.status = true AND (patients.id LIKE ? OR patients.name LIKE ? OR patients.phone LIKE ?) ORDER BY messages.id DESC";
+    $stmt = $db->prepare($sql);
+    $search = $key;
+    $search = "%" . $search . "%";
+    $stmt->bind_param("sss", $search, $search, $search);
+
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $stmt->close();
+    $db->close();
+
+    return $result;
+}
+
+function searchAppointment($key)
+{
+    $db = connect();
+
+    $sql = "SELECT patients.*, appointments.* FROM appointments INNER JOIN patients ON appointments.patient_id = patients.id WHERE appointments.user = 'doctor' AND (patients.name LIKE ? OR patients.phone LIKE ? OR patients.id LIKE ? OR appointments.status LIKE ?)";
+    $stmt = $db->prepare($sql);
+    $search = $key;
+    $search = "%" . $search . "%";
+    $stmt->bind_param("ssss", $search, $search, $search, $search);
+
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $stmt->close();
+    $db->close();
+
+    return $result;
+}
+
+function searchPatient($key)
+{
+    $db = connect();
+
+    $sql = "SELECT * FROM patients WHERE name LIKE ? OR id LIKE ? OR phone LIKE ?";
+    $stmt = $db->prepare($sql);
+    $search = $key;
+    $search = "%" . $search . "%";
+    $stmt->bind_param("sss", $search, $search, $search);
+
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $stmt->close();
+    $db->close();
+
+    return $result;
+}
+
 function updateProfile($id, $name, $email, $phone, $chamber1, $chamber2)
 {
     $db = connect();

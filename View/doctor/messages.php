@@ -28,6 +28,7 @@ function message($msg)
     <link href="../../Assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- CSS Files -->
     <link id="pagestyle" href="../../Assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js" integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body class="g-sidenav-show   bg-gray-100">
@@ -122,10 +123,18 @@ function message($msg)
                 <div class="col-lg-12 mb-4">
                     <div class="card mb-4 h-100">
                         <div class="card-header pb-0">
-                            <h6>Patient Messages</h6>
+                            <form action="../../Controller/doctor/searchMessage.php" method="GET" onsubmit="searchMessage(this); return false;">
+                                <div class="d-flex align-items-center">
+                                    <h6 class="m-1">Patient Messages</h6>
+                                    <input type="text" class="form-control w-lg-25 ms-auto text-xxs font-weight-bolder" id="search" name="search" placeholder="Search" aria-describedby="basic-addon2">
+                                    <div class="input-group-append">
+                                        <button class="input-group-text" id="basic-addon2" type="submit"><i class="fas fa-search p-1"></i></button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                         <div class="card-body px-0 pt-0 pb-2" style="height: 50vh; overflow-y: scroll;">
-                            <div class="table-responsive p-0">
+                            <div class="table-responsive p-0" id="patient">
                                 <table class="table align-items-center mb-0">
                                     <thead>
                                         <tr>
@@ -137,7 +146,6 @@ function message($msg)
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <a href="../../Controller/doctor/messageDeleteController.php"></a>
                                         <?php
                                         if ($patientsMsg->num_rows > 0) {
                                             while ($data = $patientsMsg->fetch_assoc()) {
@@ -146,7 +154,7 @@ function message($msg)
                                                     <td>
                                                         <div class='d-flex px-2 py-1'>
                                                             <div class='d-flex flex-column justify-content-center'>
-                                                                <h6 class='mb-0 text-sm'>" . $data['name'] . "</h6>
+                                                                <h6 class='mb-0 text-sm'>" . $data['name'] . "<span class='text-secondary mb-0'> (" . $data['patient_id'] . ")</span></h6>
                                                                 <a href='mailto:" . $data['email'] . "' class='text-xs text-secondary mb-0'>" . $data['email'] . "</a>
                                                             </div>
                                                         </div>
@@ -289,6 +297,23 @@ function message($msg)
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="../../Assets/js/argon-dashboard.min.js?v=2.0.4"></script>
+    <script>
+        function searchMessage(form) {
+            const url = form.action;
+            const key = form.search.value;
+
+            if (key != "") {
+                axios.get(url + "?patient=" + key)
+                    .then((response) => {
+                        console.log(response);
+                        document.getElementById("patient").innerHTML = response.data;
+                    })
+                    .catch((error) => console.log("Error: " + error));
+            } else {
+                document.location.href = "messages.php";
+            }
+        }
+    </script>
 </body>
 
 </html>

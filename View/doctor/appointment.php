@@ -132,17 +132,18 @@ function chamber2($chamber)
             <div class="row my-4">
                 <div class="col-lg-12 col-md-6 mb-4">
                     <div class="card mb-4 h-100">
-                        <form action="appointmentHistory.php">
-                            <div class="d-flex align-items-center">
-                                <h6 class="m-4">Appointment Requests</h6>
-                                <button class="btn btn-primary btn-sm ms-auto m-4">Appointment Log</button>
-                            </div>
-                        </form>
+                        <!-- <form action="appointmentHistory.php" method="POST"> -->
+                        <div class="d-flex align-items-center">
+                            <h6 class="m-4">Appointment Requests</h6>
+                            <a href="appointmentHistory.php" class="btn btn-primary btn-sm ms-auto m-4">Appointment Log</a>
+                        </div>
+                        <!-- </form> -->
                         <div class="card-body px-0 pt-0 pb-2" style="height: 50vh; overflow-y: scroll;">
                             <div class="table-responsive p-0">
                                 <table class="table align-items-center mb-0">
                                     <thead>
                                         <tr>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Patient ID</th>
                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Patient Name</th>
                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Phone Number</th>
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Age/Gender</th>
@@ -157,6 +158,9 @@ function chamber2($chamber)
                                             while ($data = $appointmentReq->fetch_assoc()) {
                                                 echo "
                                                 <tr>
+                                                    <td class='align-middle text-center text-sm'>
+                                                        <p class='text-xs font-weight-bold mb-0'>" . $data['patient_id'] . "</p>
+                                                    </td>
                                                     <td>
                                                         <div class='d-flex px-2 py-1'>
                                                             <div class='d-flex flex-column justify-content-center'>

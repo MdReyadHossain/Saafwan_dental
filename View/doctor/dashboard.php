@@ -36,6 +36,7 @@ function statusInner($stat)
     <link href="../../Assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- CSS Files -->
     <link id="pagestyle" href="../../Assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js" integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body class="g-sidenav-show bg-gray-100">
@@ -147,13 +148,22 @@ function statusInner($stat)
                 <div class="col-lg-8 col-md-6">
                     <div class="card mb-4 h-100">
                         <div class="card-header pb-0">
-                            <h6>Patients</h6>
+                            <form action="../../Controller/doctor/searchPatient.php" method="GET" onsubmit="searchPatient(this); return false;">
+                                <div class="d-flex align-items-center">
+                                    <h6 class="m-1">Patients</h6>
+                                    <input type="text" class="form-control w-lg-25 ms-auto text-xxs font-weight-bolder" id="search" name="search" placeholder="Search" aria-describedby="basic-addon2">
+                                    <div class="input-group-append">
+                                        <button class="input-group-text" id="basic-addon2" type="submit"><i class="fas fa-search p-1"></i></button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                         <div class="card-body px-0 pt-0 pb-2" style="height: 50vh; overflow-y: scroll;">
-                            <div class="table-responsive p-0">
+                            <div class="table-responsive p-0" id="patient">
                                 <table class="table align-items-center mb-0">
                                     <thead>
                                         <tr>
+                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID</th>
                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Status</th>
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Phone Number</th>
@@ -165,27 +175,30 @@ function statusInner($stat)
                                         if ($allPatients->num_rows > 0) {
                                             while ($data = $allPatients->fetch_assoc()) {
                                                 echo "
-                                                <tr>
-                                                    <td>
-                                                        <div class='d-flex px-2 py-1'>
-                                                            <div class='d-flex flex-column justify-content-center'>
-                                                                <h6 class='mb-0 text-sm'>" . $data['name'] . "</h6>
-                                                                <a href='mailto:" . $data['email'] . "' class='text-xs text-secondary mb-0'>" . $data['email'] . "</a>
+                                                    <tr>
+                                                        <td class='align-middle text-center text-sm'>
+                                                            <span class='text-xs text-secondary mb-0'>" . $data['id'] . "</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class='d-flex px-2 py-1'>
+                                                                <div class='d-flex flex-column justify-content-center'>
+                                                                    <h6 class='mb-0 text-sm'>" . $data['name'] . "</h6>
+                                                                    <a href='mailto:" . $data['email'] . "' class='text-xs text-secondary mb-0'>" . $data['email'] . "</a>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </td>
-                                                    <td class='align-middle text-center text-sm'>
-                                                        <span class='text-uppercase badge badge-sm bg-gradient-" . status($data['status']) . "'>" . statusInner($data['status']) . "</span>
-                                                    </td>
-                                                    <td class='align-middle text-center text-sm'>
-                                                        <a href='tel:" . $data['phone'] . "' class='text-secondary text-xs font-weight-bold'>" . $data['phone'] . "</a>
-                                                    </td>
-                                                    <td class='align-middle'>
-                                                        <a href='patientView.php?patient-id=" . $data['id'] . "' class='btn btn-primary font-weight-bold text-xs' data-toggle='tooltip' data-original-title='Edit user'>
-                                                            View
-                                                        </a>
-                                                    </td>
-                                                </tr>";
+                                                        </td>
+                                                        <td class='align-middle text-center text-sm'>
+                                                            <span class='text-uppercase badge badge-sm bg-gradient-" . status($data['status']) . "'>" . statusInner($data['status']) . "</span>
+                                                        </td>
+                                                        <td class='align-middle text-center text-sm'>
+                                                            <a href='tel:" . $data['phone'] . "' class='text-secondary text-xs font-weight-bold'>" . $data['phone'] . "</a>
+                                                        </td>
+                                                        <td class='align-middle'>
+                                                            <a href='patientView.php?patient-id=" . $data['id'] . "' class='btn btn-primary font-weight-bold text-xs' data-toggle='tooltip' data-original-title='Edit user'>
+                                                                View
+                                                            </a>
+                                                        </td>
+                                                    </tr>";
                                             }
                                         }
                                         ?>
@@ -497,6 +510,23 @@ function statusInner($stat)
                 },
             },
         });
+    </script>
+    <script>
+        function searchPatient(form) {
+            const url = form.action;
+            const key = form.search.value;
+
+            if (key != "") {
+                axios.get(url + "?patient=" + key)
+                    .then((response) => {
+                        console.log(response.data);
+                        document.getElementById("patient").innerHTML = response.data;
+                    })
+                    .catch((error) => console.log("Error: " + error));
+            } else {
+                document.location.href = "dashboard.php";
+            }
+        }
     </script>
 </body>
 
