@@ -49,8 +49,8 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0">
                         <a href="../" class="nav-item nav-link">Home</a>
-                        <a href="about.php" class="nav-item nav-link active">About</a>
-                        <a href="service.php" class="nav-item nav-link">Service</a>
+                        <a href="about.php" class="nav-item nav-link">About</a>
+                        <a href="service.php" class="nav-item nav-link active">Service</a>
                         <a href="contact.php" class="nav-item nav-link">Contact</a>
                         <a href="login.php" class="nav-item nav-link">Login</a>
                     </div>
@@ -66,42 +66,43 @@
     <div class="container-fluid py-5">
         <div class="container">
             <div class="row gx-5">
-                <div class="col-lg-7">
-                    <div class="mb-4">
-                        <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5">About Us</h5>
-                        <h1 class="display-4">Our Mission and Vision</h1>
-                    </div>
-                    <ul>
-                        <li>To provide exceptional dental care and promote oral health by offering comprehensive, personalized, and compassionate dental services to our patients.</li>
-                        <li>We strive to create a comfortable and welcoming environment while utilizing the latest advancements in dental technology and maintaining the highest standards of professionalism and ethics.</li>
-                        <li>Our vision is to be a leading dental care provider that transforms lives by enhancing oral health and overall well-being.</li>
-                        <li>We aim to be recognized for our excellence in patient care, continuous innovation, and commitment to education and community outreach.</li>
-                        <li>By fostering strong relationships with our patients, we aspire to become their trusted partners in achieving and maintaining optimal oral health throughout their lifetime.</li>
-                    </ul>
-                    <div class="row g-3 pt-3 mb-3">
-                        <div class="col-sm-4 col-6">
-                            <div class="bg-light text-center rounded-circle py-4">
-                                <i class="fa fa-3x fa-eye text-primary mb-3"></i>
-                                <h6 class="mb-0">Vision</h6>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 col-6">
-                            <div class="bg-light text-center rounded-circle py-4">
-                                <i class="fa fa-3x fa-bullseye text-primary mb-3"></i>
-                                <h6 class="mb-0">Mission</h6>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 col-6">
-                            <div class="bg-light text-center rounded-circle py-4">
-                                <i class="fa fa-3x fa-gem text-primary mb-3"></i>
-                                <h6 class="mb-0">Values</h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div class="col-lg-5 mb-5 mb-lg-0" style="min-height: 500px;">
                     <div class="position-relative h-100">
-                        <img class="position-absolute w-100 h-100 rounded" src="../Assets/img/aboutus.jpeg" style="object-fit: cover;">
+                        <img class="position-absolute w-100 h-100 rounded" src="../Assets/img/service.jpg" style="object-fit: cover;">
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="mb-4">
+                        <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5">Service</h5>
+                        <h1 class="display-4">Best Dental Care For Yourself and Your Family</h1>
+                    </div>
+                    <p>We work with the motto of providing high-quality, affordable dental treatment in a good environment. We endeavor to dispel the myth that “a visit to the dentist is an uncomfortable experience”. <br>
+                        Saafwan Dental is equipped with state-of-the-art equipment and technology. Let's have a visit us today and feel the difference!</p>
+                    <div class="row g-3 pt-3">
+                        <div class="col-sm-3 col-6">
+                            <div class="bg-light text-center rounded-circle py-4">
+                                <i class="fa fa-3x fa-user-md text-primary mb-3"></i>
+                                <h6 class="mb-0">Qualified<small class="d-block text-primary">Doctor</small></h6>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 col-6">
+                            <div class="bg-light text-center rounded-circle py-4">
+                                <i class="fa fa-3x fa-procedures text-primary mb-3"></i>
+                                <h6 class="mb-0">High-Tech<small class="d-block text-primary">Equipment</small></h6>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 col-6">
+                            <div class="bg-light text-center rounded-circle py-4">
+                                <i class="fa fa-3x fa-microscope text-primary mb-3"></i>
+                                <h6 class="mb-0">Accurate<small class="d-block text-primary">Testing</small></h6>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 col-6">
+                            <div class="bg-light text-center rounded-circle py-4">
+                                <i class="fa fa-3x fa-ambulance text-primary mb-3"></i>
+                                <h6 class="mb-0">Best<small class="d-block text-primary">Services</small></h6>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

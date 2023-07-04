@@ -50,6 +50,7 @@
                     <div class="navbar-nav ms-auto py-0">
                         <a href="../" class="nav-item nav-link">Home</a>
                         <a href="about.php" class="nav-item nav-link">About</a>
+                        <a href="service.php" class="nav-item nav-link">Service</a>
                         <a href="contact.php" class="nav-item nav-link active">Contact</a>
                         <a href="login.php" class="nav-item nav-link">Login</a>
                     </div>

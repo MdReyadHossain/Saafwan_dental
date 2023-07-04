@@ -18,10 +18,9 @@
                 <div class="d-flex flex-column justify-content-start">
                     <a class="text-light mb-2" href="../"><i class="fa fa-angle-right me-2"></i>Home</a>
                     <a class="text-light mb-2" href="about.php"><i class="fa fa-angle-right me-2"></i>About Us</a>
-                    <a class="text-light mb-2" href="../#service"><i class="fa fa-angle-right me-2"></i>Our Services</a>
                     <a class="text-light mb-2" href="../#blog"><i class="fa fa-angle-right me-2"></i>Latest Blog</a>
                     <a class="text-light mb-2" href="contact.php"><i class="fa fa-angle-right me-2"></i>Contact Us</a>
-                    <a class="text-light" href="http://reyad.ezyro.com/" target="_blank"><i class="fa fa-angle-right me-2"></i>Contact Developer</a>
+                    <a class="text-light" href="service.php"><i class="fa fa-angle-right me-2"></i>Our Services</a>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
