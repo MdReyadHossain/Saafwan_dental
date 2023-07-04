@@ -78,7 +78,7 @@ function updateProfile($id, $name, $email, $phone, $age, $gender, $chamber)
     }
 }
 
-function deletePatient($id)
+function disablePatient($id)
 {
     $db = connect();
     $sql = "UPDATE patients SET status = false WHERE id = $id";
@@ -95,6 +95,19 @@ function activePatient($id)
 {
     $db = connect();
     $sql = "UPDATE patients SET status = true WHERE id = $id";
+    try {
+        $db->query($sql);
+    } catch (Exception $error) {
+        echo "Error " . $sql . "<br>" . $db->error;
+    } finally {
+        $db->close();
+    }
+}
+
+function deletePatient($id)
+{
+    $db = connect();
+    $sql = "DELETE FROM patients WHERE id = $id";
     try {
         $db->query($sql);
     } catch (Exception $error) {

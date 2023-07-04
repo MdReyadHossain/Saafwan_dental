@@ -177,12 +177,15 @@
                                         </table>
                                     </div>
                                 </div>
+                                <div class="col-4 text-end">
+                                    <a href="../../Controller/doctor/deletePatientController.php?patient-id=<?php echo $user['id'] ?>" class="btn btn-danger font-weight-bold text-xs">Delete Patient</a>
+                                </div>
                             </div>
                         </div>
                         <?php
                         if ($user['status'] == true) {
                             echo "
-                            <a href='../../Controller/doctor/deletePatientController.php?patient-id=" .  $user['id'] . "' class='btn btn-danger font-weight-bold text-xs w-lg-25 mx-5'>
+                            <a href='../../Controller/doctor/disablePatientController.php?patient-id=" .  $user['id'] . "' class='btn btn-warning font-weight-bold text-xs w-lg-25 mx-5'>
                                 Disable Patient Account
                             </a>
                             ";
@@ -197,12 +200,13 @@
                         ?>
                     </div>
                 </div>
-
-                <div class="row mt-4">
-                </div>
-                <!-- footer  -->
-                <?php include("../components/doctorFooter.php"); ?>
             </div>
+
+            <div class="row mt-4">
+            </div>
+            <!-- footer  -->
+            <?php include("../components/doctorFooter.php"); ?>
+        </div>
     </main>
     <div class="fixed-plugin">
         <div class="card shadow-lg">
