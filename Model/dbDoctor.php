@@ -77,10 +77,10 @@ function searchPatient($key)
     return $result;
 }
 
-function updateProfile($id, $name, $email, $phone, $chamber1, $chamber2)
+function updateProfile($id, $name, $email, $phone, $chamber1, $chamber2, $established, $founder, $bio)
 {
     $db = connect();
-    $sql = "UPDATE doctors SET name = '$name', email = '$email', phone = '$phone', chamber1 = '$chamber1', chamber2 = '$chamber2' WHERE id = $id";
+    $sql = "UPDATE doctors SET name = '$name', email = '$email', phone = '$phone', chamber1 = '$chamber1', chamber2 = '$chamber2', established = '$established', founder = '$founder', bio = '$bio' WHERE id = $id";
     try {
         $db->query($sql);
     } catch (Exception $error) {

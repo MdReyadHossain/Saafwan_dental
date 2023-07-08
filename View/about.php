@@ -146,7 +146,7 @@
 
 
     <!-- Services Start -->
-    <div class="container-fluid py-5">
+    <div class="container-fluid pt-5">
         <div class="container">
             <div class="row gx-5">
                 <div class="col-lg-5 mb-5 mb-lg-0 d-none d-sm-block" style="min-height: 500px;">
@@ -155,11 +155,36 @@
                     </div>
                 </div>
                 <div class="col-lg-7">
-                    <div class="mb-5">
+                    <div class="">
                         <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5">Our Dental Care</h5>
                         <h1 class="display-5">Saawan Dental & Ortho Dontics</h1>
                     </div>
-                    <p></p>
+                    <p>Saawan Dental & Ortho Dontics, where your oral health and beautiful smile are our top priorities.</p>
+                    <table class="text-start">
+                        <tr>
+                            <th class="py-2" style="padding-right: 50px">Established at</th>
+                            <td><?php echo $doc['established'] ?></td>
+                        </tr>
+                        <tr>
+                            <th class="py-2" style="padding-right: 50px">Founder</th>
+                            <td><?php echo $doc['founder'] ?></td>
+                        </tr>
+                        <tr>
+                            <th class="py-2" style="padding-right: 50px">Email</th>
+                            <td><?php echo $doc['email'] ?></td>
+                        </tr>
+                        <tr>
+                            <th class="py-2" style="padding-right: 50px">Contact No</th>
+                            <td><?php echo $doc['phone'] ?></td>
+                        </tr>
+                        <tr>
+                            <th class="py-2 align-top" style="padding-right: 50px" rowspan="2">Specialist</th>
+                            <td class="py-2"><?php echo $doc['name'] ?></td>
+                        </tr>
+                        <tr>
+                            <td><?php echo $doc['bio'] ?></td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>

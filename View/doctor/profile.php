@@ -163,12 +163,24 @@
                                     </div>
                                 </div>
                                 <hr class="horizontal dark">
-                                <p class="text-uppercase text-sm">About me</p>
+                                <p class="text-uppercase text-sm">About</p>
                                 <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="example-text-input" class="form-control-label">Established at</label>
+                                            <input class="form-control" type="text" name="established" value="<?php echo $doc['established'] ?>">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="example-text-input" class="form-control-label">Founder</label>
+                                            <input class="form-control" type="text" name="founder" value="<?php echo $doc['founder'] ?>">
+                                        </div>
+                                    </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="example-text-input" class="form-control-label">About me</label>
-                                            <input class="form-control" type="text" style="cursor: not-allowed;" value="We are a specialized dental clinic conveniently located in Dhaka, Bangladesh. Our team of specialist" disabled>
+                                            <label for="example-text-input" class="form-control-label">Bio</label>
+                                            <input class="form-control" type="text" name="bio" value="<?php echo $doc['bio'] ?>">
                                         </div>
                                     </div>
                                 </div>
@@ -212,13 +224,13 @@
                                     <?php echo $doc['name'] ?>
                                 </h5>
                                 <div class="h6 font-weight-300">
-                                    <i class="ni location_pin mr-2"></i><?php echo $doc['email'] ?>
+                                    <?php echo $doc['email'] ?>
                                 </div>
                                 <div class="h6 mt-4">
-                                    <i class="ni business_briefcase-24 mr-2"></i>Managing Director
+                                    <?php echo $doc['bio'] ?>
                                 </div>
                                 <div>
-                                    <i class="ni education_hat mr-2"></i>Saafwan Dental & Ortho Dontics
+                                    Saafwan Dental & Ortho Dontics
                                 </div>
                             </div>
                         </div>

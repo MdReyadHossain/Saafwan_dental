@@ -2,7 +2,7 @@
 require "../../Model/dbDoctor.php";
 session_start();
 
-$id = $name = $email = $phone = $chamber1 = $chamber2 = "";
+$id = $name = $email = $phone = $chamber1 = $chamber2 = $established = $founder = $bio = "";
 $isValid = true;
 $phoneReg = '/^(0)1[3456789]\d{8}$/';
 
@@ -20,8 +20,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $phone = test($_POST["phone"]);
     $chamber1 = test($_POST["chamber1"]);
     $chamber2 = test($_POST["chamber2"]);
+    $established = test($_POST["established"]);
+    $founder = test($_POST["founder"]);
+    $bio = test($_POST["bio"]);
 
-    if ($id == null || $name == "" || $email == "" || $phone == "" || $chamber1 == "" || $chamber2 == "") {
+    if ($id == null || $name == "" || $email == "" || $phone == "" || $chamber1 == "" || $chamber2 == "" || $established == "" || $founder == "" || $bio == "") {
         $isValid = false;
     }
 
@@ -40,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if ($isValid) {
-        updateProfile($id, $name, $email, $phone, $chamber1, $chamber2);
+        updateProfile($id, $name, $email, $phone, $chamber1, $chamber2, $established, $founder, $bio);
         $_SESSION["name"] = $name;
         $_SESSION["email"] = $email;
         $_SESSION["phone"] = $phone;
