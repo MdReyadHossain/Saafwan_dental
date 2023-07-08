@@ -61,18 +61,19 @@
 
 
     <!-- Hero Start -->
-    <div class="container-fluid bg-primary py-5 mb-5 hero-header">
-        <div class="container py-5">
-            <div class="row justify-content-start">
-                <div class="col-lg-8 text-center text-lg-start">
-                    <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5" style="border-color: rgba(256, 256, 256, .3) !important;">Welcome To Saafwan Denatal</h5>
-                    <h1 class="display-1 text-white mb-md-4">Best Dentalcare Solution In Your City</h1>
-                    <div class="pt-2">
-                        <a href="./View/patient/dashboard.php" class="btn btn-light rounded-pill py-md-3 px-md-5 mx-2">Appointment</a>
-                    </div>
+    <div class="home-wall">
+        <div class="pt-5 video-cover">
+            <div class="col-12 text-center overlay">
+                <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5" style="border-color: rgba(256, 256, 256, .3) !important;">Welcome To Saafwan Denatal</h5>
+                <h1 class="display-1 text-white mb-md-4">Best Dentalcare Solution</h1>
+                <h1 class="display-1 text-white mb-md-4">In Your City</h1>
+                <div class="pt-2">
+                    <a href="./View/patient/dashboard.php" class="btn btn-light rounded-pill py-md-3 px-md-5 mx-2">Appointment</a>
                 </div>
             </div>
         </div>
+        <video src="./Assets/img/saafwan-wall.mp4" class="container-fluid bg-primary mb-5 hero-header px-0" playsinline autoplay muted loop>
+        </video>
     </div>
     <!-- Hero End -->
 

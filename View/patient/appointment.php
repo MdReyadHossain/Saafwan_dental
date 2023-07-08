@@ -128,6 +128,7 @@
                                         ?>
                                     </div>
                                 </div>
+                                <a href='appointmentHistory.php' class='btn btn-primary btn-sm w-lg-15 m-2'>Appointment History</a>
                             </div>
                         </div>
                     </div>
@@ -180,9 +181,6 @@
                 <?php
                 }
                 ?>
-            </div>
-            <div class="mx-2">
-                <a href="appointmentHistory.php" class="btn btn-primary btn-sm ms-auto m-3 float-right">Appointment History</a>
             </div>
             <!-- Footer -->
             <?php include("../components/patientFooter.php"); ?>

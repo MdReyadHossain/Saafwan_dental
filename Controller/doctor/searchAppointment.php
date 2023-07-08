@@ -1,5 +1,7 @@
 <?php
 require "../../Model/dbDoctor.php";
+$db = connect();
+$doc = $db->query("SELECT * FROM doctors WHERE id = 1")->fetch_assoc();
 
 function status($status)
 {

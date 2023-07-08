@@ -70,10 +70,37 @@
     color: var(--primary);
 }
 
+.home-wall {
+    position: relative;
+}
+
 .hero-header {
-    background: url(../img/hero.jpg) top right no-repeat;
-    background-size: cover;
-    height: 80vh;
+    /* background: url(../img/saafwan-wall.gif) top right no-repeat; */
+    /* background-size: cover; */
+    z-index: 0;
+    height: 70vh;
+    -o-object-fit: cover;
+    object-fit: cover;
+    -o-object-position: center;
+    object-position: center;
+    position: absolute;
+    top: 0%;
+    left: auto;
+    z-index: 1;
+}
+
+.video-cover {
+    height: 70vh;
+    position: relative;
+    z-index: 10;
+    /* background-color: rgb(0, 0, 0, .0); */
+
+}
+
+.overlay {
+    position: absolute;
+    /* z-index: 10; */
+    height: 85vh;
 }
 
 @media (min-width: 992px) {

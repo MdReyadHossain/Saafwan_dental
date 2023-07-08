@@ -78,7 +78,7 @@
                         <li>We aim to be recognized for our excellence in patient care, continuous innovation, and commitment to education and community outreach.</li>
                         <li>By fostering strong relationships with our patients, we aspire to become their trusted partners in achieving and maintaining optimal oral health throughout their lifetime.</li>
                     </ul>
-                    <div class="row g-3 pt-3 mb-3">
+                    <div class="row g-3 pt-3">
                         <div class="col-sm-4 col-6">
                             <div class="bg-light text-center rounded-circle py-4">
                                 <i class="fa fa-3x fa-eye text-primary mb-3"></i>
@@ -91,7 +91,7 @@
                                 <h6 class="mb-0">Mission</h6>
                             </div>
                         </div>
-                        <div class="col-sm-4 col-6">
+                        <div class="col-sm-4 col-6 d-none d-sm-block">
                             <div class="bg-light text-center rounded-circle py-4">
                                 <i class="fa fa-3x fa-gem text-primary mb-3"></i>
                                 <h6 class="mb-0">Values</h6>
@@ -99,7 +99,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-5 mb-5 mb-lg-0" style="min-height: 500px;">
+                <div class="col-lg-5 mb-5 mb-lg-0 d-none d-sm-block" style="min-height: 500px;">
                     <div class="position-relative h-100">
                         <img class="position-absolute w-100 h-100 rounded" src="../Assets/img/aboutus.jpeg" style="object-fit: cover;">
                     </div>
@@ -108,48 +108,6 @@
         </div>
     </div>
     <!-- About End -->
-
-
-    <!-- Services Start -->
-    <div class="container-fluid py-5">
-        <div class="container">
-            <div class="text-center mx-auto mb-5" style="max-width: 500px;">
-                <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5">Facilities</h5>
-                <h1 class="display-4">Excellent Services</h1>
-            </div>
-            <div class="row g-5">
-                <div class="col-lg-4 col-md-6">
-                    <div class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
-                        <div class="service-icon mb-4">
-                            <i class="fa fa-2x fa-user-md text-white"></i>
-                        </div>
-                        <h4 class="mb-3 text-uppercase">Qualified Doctor</h4>
-                        <p class="m-0">Our Doctor has special training in dental implant and looks to
-                            provide personalized care to your dental problems.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
-                        <div class="service-icon mb-4">
-                            <i class="fa fa-2x fa-procedures text-white"></i>
-                        </div>
-                        <h4 class="mb-3 text-uppercase">Best Service</h4>
-                        <p class="m-0">Saafwan Dental & Ortho Dontics provide excellence as a full service dental and orthodontic care practice.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
-                        <div class="service-icon mb-4">
-                            <i class="fa fa-2x fa-microscope text-white"></i>
-                        </div>
-                        <h4 class="mb-3 text-uppercase">High-Tech Equipment</h4>
-                        <p class="m-0">Our tools and devices are designed to enhance diagnosis, treatment and patient comfort, ensuring optimal dental experiences and outcomes.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Services End -->
 
 
     <!-- Team Start -->
@@ -185,6 +143,28 @@
         </div>
     </div>
     <!-- Team End -->
+
+
+    <!-- Services Start -->
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="row gx-5">
+                <div class="col-lg-5 mb-5 mb-lg-0 d-none d-sm-block" style="min-height: 500px;">
+                    <div class="position-relative h-100">
+                        <img class="position-absolute w-100 h-80 rounded" src="../Assets/img/team-4.jpg" style="object-fit: cover;">
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="mb-5">
+                        <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5">Our Dental Care</h5>
+                        <h1 class="display-5">Saawan Dental & Ortho Dontics</h1>
+                    </div>
+                    <p></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Services End -->
 
 
     <!-- Footer Start -->
