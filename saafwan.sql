@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 11, 2023 at 10:30 PM
+-- Generation Time: Jul 14, 2023 at 02:22 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.2
 
@@ -51,7 +51,8 @@ INSERT INTO `anonymous` (`id`, `name`, `email`, `phone`, `gender`, `age`, `messa
 (4, 'Munira Zebin', 'munirazebin229@gmail.com', '01745482666', NULL, NULL, 'Thank you Doctor', '2023-06-08', 1),
 (5, NULL, 'abbas@gmail.com', NULL, NULL, NULL, NULL, '2023-06-08', 0),
 (6, 'Ruidu', 'reyadhosen@gmail.com', '01956394373', NULL, NULL, 'hola', '2023-06-08', 0),
-(7, 'Munira Zebin', 'munirazebin229@gmail.com', '01745482666', NULL, NULL, 'nooooo', '2023-06-08', 0);
+(7, 'Munira Zebin', 'munirazebin229@gmail.com', '01745482666', NULL, NULL, 'nooooo', '2023-06-08', 0),
+(8, 'Reyad Hossain', 'reyadhosen@gmail.com', '01956394373', NULL, NULL, 'Hello', '2023-06-12', 1);
 
 -- --------------------------------------------------------
 
@@ -75,13 +76,14 @@ CREATE TABLE `appointments` (
 --
 
 INSERT INTO `appointments` (`id`, `user`, `chamber`, `appointment_at`, `created_at`, `cancel_at`, `status`, `patient_id`) VALUES
-(2, 'patient', 2, '2023-06-07', '2023-06-07', NULL, 'pending', 22),
+(2, 'doctor', 2, '2023-06-07', '2023-06-07', '2023-06-12', 'cancel', 22),
 (3, 'doctor', 2, '2023-06-09', '2023-06-08', NULL, 'done', 20),
 (4, 'doctor', 1, '2023-06-09', '2023-06-08', NULL, 'done', 21),
 (6, 'doctor', 1, '2023-06-12', '2023-06-10', NULL, 'cancel', 20),
 (8, 'doctor', 1, '2023-06-10', '2023-06-10', NULL, 'cancel', 20),
 (17, 'doctor', 1, '2023-06-10', '2023-06-10', NULL, 'cancel', 20),
-(20, 'doctor', 1, '2023-06-10', '2023-06-11', NULL, 'pending', 20);
+(21, 'doctor', 1, '2023-06-14', '2023-06-12', NULL, 'done', 20),
+(22, 'patient', 1, '2023-07-14', '2023-07-14', NULL, 'pending', 20);
 
 -- --------------------------------------------------------
 
@@ -98,15 +100,18 @@ CREATE TABLE `doctors` (
   `created_at` date DEFAULT NULL,
   `deleted_at` date DEFAULT NULL,
   `chamber1` varchar(250) NOT NULL,
-  `chamber2` varchar(250) DEFAULT NULL
+  `chamber2` varchar(250) DEFAULT NULL,
+  `established` varchar(250) NOT NULL,
+  `founder` varchar(250) NOT NULL,
+  `bio` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `doctors`
 --
 
-INSERT INTO `doctors` (`id`, `name`, `email`, `phone`, `password`, `created_at`, `deleted_at`, `chamber1`, `chamber2`) VALUES
-(1, 'Dr. Fida Haque', 'reyadhosen@gmail.com', '01713115050', 'saafwan123', '2023-06-03', NULL, '529, Solmaid, Dhaka, Bangladesh', 'Kuril Bishwa Road, Dhaka, Bangladesh');
+INSERT INTO `doctors` (`id`, `name`, `email`, `phone`, `password`, `created_at`, `deleted_at`, `chamber1`, `chamber2`, `established`, `founder`, `bio`) VALUES
+(1, 'Dr. Fida Haque', 'fida@gmail.com', '01713115050', 'saafwan123', '2023-06-03', NULL, '529, Solmaid, Dhaka, Bangladesh', 'Kuril Bishwa Road, Dhaka, Bangladesh', '15 Nov, 2001', 'Fida Haque', 'BDS, MPH, Special Trained Implant');
 
 -- --------------------------------------------------------
 
@@ -156,7 +161,21 @@ CREATE TABLE `patients` (
 INSERT INTO `patients` (`id`, `name`, `phone`, `email`, `password`, `age`, `gender`, `default_chamber`, `created_at`, `status`) VALUES
 (20, 'Reyad Hossain', '01956394373', 'reyadhosen@gmail.com', '605908', 22, 'Male', 1, '2023-06-05', 1),
 (21, 'Ifat Hasan', '01956394372', 'blazeaxelspy@gmail.com', '557419', 22, 'Male', 1, '2023-06-06', 1),
-(22, 'Munira Zebin', '01745482666', 'munirazebin229@gmail.com', '713392', 20, 'Female', 1, '2023-06-06', 1);
+(22, 'Munira Zebin', '01745482666', 'munirazebin229@gmail.com', '713392', 20, 'Female', 1, '2023-06-06', 1),
+(23, 'Mursalin', '01999986000', 'antukhan33@gmail.com', '308774', 69, 'Male', NULL, '2023-06-12', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `treatment`
+--
+
+CREATE TABLE `treatment` (
+  `id` int(11) NOT NULL,
+  `treatment_details` varchar(250) NOT NULL,
+  `surgeon` varchar(100) NOT NULL,
+  `patient_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -189,7 +208,9 @@ INSERT INTO `users` (`id`, `name`, `phone`, `email`, `password`, `age`, `gender`
 (35, 'Munira Zebin', '01745482666', 'munirazebin229@gmail.com', NULL, NULL, NULL, '2023-06-08', NULL, NULL),
 (36, NULL, NULL, 'abbas@gmail.com', NULL, NULL, NULL, '2023-06-08', NULL, NULL),
 (37, 'Ruidu', '01956394373', 'reyadhosen@gmail.com', NULL, NULL, NULL, '2023-06-08', NULL, NULL),
-(38, 'Munira Zebin', '01745482666', 'munirazebin229@gmail.com', NULL, NULL, NULL, '2023-06-08', NULL, NULL);
+(38, 'Munira Zebin', '01745482666', 'munirazebin229@gmail.com', NULL, NULL, NULL, '2023-06-08', NULL, NULL),
+(39, 'Reyad Hossain', '01956394373', 'reyadhosen@gmail.com', NULL, NULL, NULL, '2023-06-12', NULL, NULL),
+(40, 'Mursalin', '01999986000', 'antukhan33@gmail.com', '308774', 69, 'Male', '2023-06-12', NULL, 23);
 
 --
 -- Indexes for dumped tables
@@ -228,6 +249,13 @@ ALTER TABLE `patients`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `treatment`
+--
+ALTER TABLE `treatment`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `patient_id` (`patient_id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -242,13 +270,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `anonymous`
 --
 ALTER TABLE `anonymous`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `appointments`
 --
 ALTER TABLE `appointments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `doctors`
@@ -266,13 +294,19 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT for table `patients`
 --
 ALTER TABLE `patients`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
+-- AUTO_INCREMENT for table `treatment`
+--
+ALTER TABLE `treatment`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- Constraints for dumped tables
@@ -289,6 +323,12 @@ ALTER TABLE `appointments`
 --
 ALTER TABLE `messages`
   ADD CONSTRAINT `messages_ibfk_1` FOREIGN KEY (`patient_id`) REFERENCES `patients` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Constraints for table `treatment`
+--
+ALTER TABLE `treatment`
+  ADD CONSTRAINT `treatment_ibfk_1` FOREIGN KEY (`patient_id`) REFERENCES `patients` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Constraints for table `users`
