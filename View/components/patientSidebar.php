@@ -81,6 +81,21 @@ $appointmentLog = $db->query("SELECT patients.*, appointments.* FROM appointment
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link text-white" href="treatmentDetails.php" id="treatmentDetails">
+                <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
+                    <svg width="30px" height="30px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <title>Treatment Details</title>
+                        <g id="table" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g id="view-grid" transform="translate(12.000000, 12.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                                <path class="color-foreground" d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4V.5zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2zm-5.146-5.146-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708.708z" />
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+                <span class="nav-link-text ms-1">Treatment Details</span>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link text-white" href="contact.php" id="contact">
                 <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                     <svg width="30px" height="30px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -137,6 +152,7 @@ $appointmentLog = $db->query("SELECT patients.*, appointments.* FROM appointment
 <script>
     let dashboard = document.getElementById("dashboard");
     let appointment = document.getElementById("appointment");
+    let treatmentDetails = document.getElementById("treatmentDetails");
     let contact = document.getElementById("contact");
     let healthedu = document.getElementById("healthedu");
     let profile = document.getElementById("profile");
@@ -161,6 +177,8 @@ $appointmentLog = $db->query("SELECT patients.*, appointments.* FROM appointment
         dashboard.classList += " active" :
         route == "appointment.php" ?
         appointment.classList += " active" :
+        route == "treatmentDetails.php" ?
+        treatmentDetails.classList += " active" :
         route == "contact.php" ?
         contact.classList += " active" :
         route == "healthedu.php" ?

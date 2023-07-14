@@ -6,7 +6,7 @@
                     © <script>
                         document.write(new Date().getFullYear())
                     </script>
-                    <a href="../../" class="font-weight-bold" target="_blank">Saafwan Dental & Ortho Dontics</a> v1.1^f92f1fe
+                    <a href="../../" class="font-weight-bold" target="_blank">Saafwan Dental & Ortho Dontics</a> v1.1^5d8b475
                 </div>
             </div>
             <div class="col-lg-6">
